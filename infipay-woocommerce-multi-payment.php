@@ -65,7 +65,7 @@ if ( ! class_exists( 'DreamteamPayShield' ) ) {
 			$this->version       = $plugin_data['Version'];
 			$this->cache_key     = 'infipay_payment_shield_update_checker';
 			$this->cache_allowed = true;
-			$this->_req_url = 'https://rio-web-source.s3.us-west-1.amazonaws.com/plugins/infipay-woocommerce-multi-payment.json';
+			$this->_req_url = 'https://payment.infipay.us/index.php?r=site%2Fcheck-version';
 
 			add_filter( 'plugins_api', array($this, 'info'), 20, 3 );
 			add_filter( 'site_transient_update_plugins', array($this, 'update') );
