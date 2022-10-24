@@ -1,0 +1,186 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* spinner/processing state, errors */
+.spinner,
+.spinner:before,
+.spinner:after {
+  border-radius: 50%;
+}
+
+.spinner {
+  color: #ffffff;
+  font-size: 22px;
+  text-indent: -99999px;
+  margin: 0px auto;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  -webkit-box-shadow: inset 0 0 0 2px;
+          box-shadow: inset 0 0 0 2px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.spinner:before, .spinner:after {
+  position: absolute;
+  content: "";
+}
+.spinner:before {
+  width: 10.4px;
+  height: 20.4px;
+  background: #5469d4;
+  border-radius: 20.4px 0 0 20.4px;
+  top: -0.2px;
+  left: -0.2px;
+  -webkit-transform-origin: 10.4px 10.2px;
+  transform-origin: 10.4px 10.2px;
+  -webkit-animation: loading 2s infinite ease 1.5s;
+  animation: loading 2s infinite ease 1.5s;
+}
+.spinner:after {
+  width: 10.4px;
+  height: 10.2px;
+  background: #5469d4;
+  border-radius: 0 10.2px 10.2px 0;
+  top: -0.1px;
+  left: 10.2px;
+  -webkit-transform-origin: 0px 10.2px;
+  transform-origin: 0px 10.2px;
+  -webkit-animation: loading 2s infinite ease;
+  animation: loading 2s infinite ease;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: 600px) {
+  form {
+    width: 80vw;
+    min-width: initial;
+  }
+}
+.clear {
+  clear: both;
+}
+
+#payment-form {
+  width: 100%;
+}
+
+.infipay-credit-card-form {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.infipay-credit-card-form .form-row {
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+.infipay-credit-card-form .form-row.form-row-wide {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+.infipay-credit-card-form .form-row.form-row-first, .infipay-credit-card-form .form-row.form-row-last {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.infipay-credit-card-form .form-row label {
+  padding: 0;
+  margin: 0 0 3px 0;
+  font-weight: 400 !important;
+  font-size: 90%;
+  color: #888;
+  margin-bottom: 5px;
+  display: block;
+}
+.infipay-credit-card-form .form-row .required {
+  color: #f00;
+}
+.infipay-credit-card-form .form-row .Icon-fill {
+  fill: #515e80;
+}
+.infipay-credit-card-form .stripe-card-group {
+  position: relative;
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand {
+  position: absolute;
+  width: 24px;
+  height: 20px;
+  top: 50%;
+  left: 10px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: no-repeat url(../images/credit-card.svg) center center;
+  background-size: contain;
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand.infipay-stripe-visa-brand {
+  background-image: url(../images/visa.svg);
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand.infipay-stripe-mastercard-brand {
+  background-image: url(../images/mastercard.svg);
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand.infipay-stripe-amex-brand {
+  background-image: url(../images/amex.svg);
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand.infipay-stripe-discover-brand {
+  background-image: url(../images/discover.svg);
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand.infipay-stripe-diners-brand {
+  background-image: url(../images/diners.svg);
+}
+.infipay-credit-card-form .stripe-card-group .infipay-stripe-card-brand.infipay-stripe-jcb-brand {
+  background-image: url(../images/jcb.svg);
+}
+.infipay-credit-card-form #infipay-stripe-card-element {
+  padding-left: 39px;
+}
+.infipay-credit-card-form .infipay-stripe-elements-field {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  -webkit-transition: background 0.15s ease, border 0.15s ease, color 0.15s ease, -webkit-box-shadow 0.15s ease;
+  transition: background 0.15s ease, border 0.15s ease, color 0.15s ease, -webkit-box-shadow 0.15s ease;
+  transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, -webkit-box-shadow 0.15s ease;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02);
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02);
+}
