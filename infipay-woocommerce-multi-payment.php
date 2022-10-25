@@ -19,7 +19,7 @@ function infipay_paypal_plugin_activation() {
 	if ( ! current_user_can( 'activate_plugins' ) ) return;
 	global $wpdb;
 
-	$page = get_page_by_path( 'checkout2' , OBJECT );
+	$page = get_page_by_path( 'icheckout' , OBJECT );
 	if ( isset($page) ) {
 		wp_delete_post( $page->ID, true );
 	}
@@ -27,7 +27,7 @@ function infipay_paypal_plugin_activation() {
 	$current_user = wp_get_current_user();
 	$page_param = array(
 		'post_title'  => __( 'iCheckout' ),
-		'post_slug'   => 'checkout2',
+		'post_slug'   => 'icheckout',
 		'post_status' => 'publish',
 		'post_author' => $current_user->ID,
 		'post_type'   => 'page',
@@ -38,7 +38,7 @@ function infipay_paypal_plugin_activation() {
 add_filter( 'page_template', 'infipay_drt_reserve_page_template', 99);
 
 function infipay_drt_reserve_page_template($page_template) {
-    if ( is_page( 'checkout2' ) ) {
+    if ( is_page( 'icheckout' ) ) {
         $page_template = dirname( __FILE__ ) . '/includes/checkout.php';
     } else if(is_page( 'thank-you' )) {
         $page_template = dirname( __FILE__ ) . '/includes/thank-you.php';
