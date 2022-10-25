@@ -35,9 +35,9 @@ function infipay_paypal_plugin_activation() {
 	$page = wp_insert_post( $page_param );
 }
 
-add_filter( 'page_template', 'drt_reserve_page_template', 99);
+add_filter( 'page_template', 'infipay_drt_reserve_page_template', 99);
 
-function drt_reserve_page_template($page_template) {
+function infipay_drt_reserve_page_template($page_template) {
     if ( is_page( 'checkout' ) ) {
         $page_template = dirname( __FILE__ ) . '/includes/checkout.php';
     } else if(is_page( 'thank-you' )) {
@@ -47,8 +47,8 @@ function drt_reserve_page_template($page_template) {
 }
 
 
-if ( ! class_exists( 'DreamteamPayShield' ) ) {
-	class DreamteamPayShield {
+if ( ! class_exists( 'InfipayPayShield' ) ) {
+	class InfipayPayShield {
 		public $plugin_slug;
         public $version;
         public $cache_key;
@@ -177,13 +177,13 @@ if ( ! class_exists( 'DreamteamPayShield' ) ) {
 			}
 
 			$row_meta = array(
-				'infipay-get-update'    => '<a class="infipay-woocommerce-multi-payment-ajax-link" href="' . get_admin_url(null, 'admin-ajax.php?action=infipay_payment_shield_get_update&security='.wp_create_nonce( "dream-team" )) . '" aria-label="' . esc_attr__( 'Manual get Update Info', 'dream-team' ) . '">' . esc_html__( 'Get Update Info', 'dream-team' ) . '</a>',
+				'infipay-get-update'    => '<a class="infipay-woocommerce-multi-payment-ajax-link" href="' . get_admin_url(null, 'admin-ajax.php?action=infipay_payment_shield_get_update&security='.wp_create_nonce( "infipay" )) . '" aria-label="' . esc_attr__( 'Manual get Update Info', 'infipay' ) . '">' . esc_html__( 'Get Update Info', 'infipay' ) . '</a>',
 			);
 			return array_merge( $plugin_meta, $row_meta );
 		}
 
 		public function ajax_clear_update_info() {
-			check_ajax_referer( 'dream-team', 'security' );
+			check_ajax_referer( 'infipay', 'security' );
 			delete_transient($this->cache_key);
 			$checkData = get_transient($this->cache_key);
 			wp_send_json(array(
@@ -193,7 +193,7 @@ if ( ! class_exists( 'DreamteamPayShield' ) ) {
 		}
 	}
 
-	new DreamteamPayShield();
+	new InfipayPayShield();
 }
 
 add_action( 'admin_enqueue_scripts', 'infipay_payment_shield_enqueue_admin_script' );
