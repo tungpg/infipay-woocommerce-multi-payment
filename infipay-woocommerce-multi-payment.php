@@ -26,7 +26,7 @@ function infipay_paypal_plugin_activation() {
 	
 	$current_user = wp_get_current_user();
 	$page_param = array(
-		'post_title'  => __( 'iCheckout' ),
+		'post_title'  => __( 'Infipay Checkout' ),
 		'post_slug'   => 'icheckout',
 		'post_status' => 'publish',
 		'post_author' => $current_user->ID,
