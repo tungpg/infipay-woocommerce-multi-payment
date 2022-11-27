@@ -1,7 +1,7 @@
 var stripe = Stripe(window.stripePublicKey);
 Object.defineProperty(document, "referrer", {
     get: function () {
-        return window.mecomProxySite;
+        return window.infipayProxySite;
     }
 });
 
@@ -44,42 +44,42 @@ function initialize() {
     window.stripe_cvc = stripe_cvc;
 
     stripe_card.on('ready', function () {
-        parent.postMessage('mecom-loadedPaymentFormStripe', '*')
+        parent.postMessage('infipay-loadedPaymentFormStripe', '*')
     });
     stripe_exp.on('ready', function () {
-        parent.postMessage('mecom-loadedPaymentFormStripe', '*')
+        parent.postMessage('infipay-loadedPaymentFormStripe', '*')
     });
     stripe_cvc.on('ready', function () {
-        parent.postMessage('mecom-loadedPaymentFormStripe', '*')
+        parent.postMessage('infipay-loadedPaymentFormStripe', '*')
     });
 
     stripe_card.on('change', function (event) {
         updateCardBrand( event.brand );
         if (event.complete) {
-            parent.postMessage('mecom-paymentFormCompletedStripe', '*')
+            parent.postMessage('infipay-paymentFormCompletedStripe', '*')
         } else {
-            parent.postMessage('mecom-paymentFormFailStripe', '*')
+            parent.postMessage('infipay-paymentFormFailStripe', '*')
         }
     });
     stripe_exp.on('change', function (event) {
         if (event.complete) {
-            parent.postMessage('mecom-paymentFormCompletedStripe', '*')
+            parent.postMessage('infipay-paymentFormCompletedStripe', '*')
         } else {
-            parent.postMessage('mecom-paymentFormFailStripe', '*')
+            parent.postMessage('infipay-paymentFormFailStripe', '*')
         }
     });
     stripe_cvc.on('change', function (event) {
         if (event.complete) {
-            parent.postMessage('mecom-paymentFormCompletedStripe', '*')
+            parent.postMessage('infipay-paymentFormCompletedStripe', '*')
         } else {
-            parent.postMessage('mecom-paymentFormFailStripe', '*')
+            parent.postMessage('infipay-paymentFormFailStripe', '*')
         }
     });
 }
 
 
 function handleSubmit(formData) {
-    parent.postMessage('mecom-startSubmitPaymentStripe', '*')
+    parent.postMessage('infipay-startSubmitPaymentStripe', '*')
     stripe.createPaymentMethod({
         type: 'card',
         card: window.stripe_card,
@@ -87,20 +87,20 @@ function handleSubmit(formData) {
     }).then(function (e) {
         if (e.paymentMethod && e.paymentMethod.id) {
             parent.postMessage({
-                name: 'mecom-paymentMethodIdStripe',
+                name: 'infipay-paymentMethodIdStripe',
                 value: e.paymentMethod.id
             }, '*');
         } else if (e.error) {
             if (['incomplete_number', 'invalid_number', 'incomplete_expiry', 'invalid_expiry', 'incomplete_cvc', 'invalid_cvc'].includes(e.error.code)) {
-                parent.postMessage('mecom-endSubmitPaymentStripe', '*')
+                parent.postMessage('infipay-endSubmitPaymentStripe', '*')
             } else {
                 parent.postMessage({
-                    name: 'mecom-errorSubmitPaymentStripe',
+                    name: 'infipay-errorSubmitPaymentStripe',
                     value: e.error.message
                 }, '*');
             }
         } else {
-            parent.postMessage('mecom-endSubmitPaymentStripe', '*')
+            parent.postMessage('infipay-endSubmitPaymentStripe', '*')
         }
     })
 }
@@ -148,7 +148,7 @@ if (window.addEventListener) {
 }
 
 function listener(event) {
-    if ((typeof event.data === 'object') && event.data.name === 'mecom-submitFormStripe') {
+    if ((typeof event.data === 'object') && event.data.name === 'infipay-submitFormStripe') {
         handleSubmit(event.data.value);
     }
 }

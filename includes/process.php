@@ -115,7 +115,7 @@ if (!empty($redirect_url)) {
 	wp_redirect($redirect_change);
 } else {
 	$return_param = $_GET;
-	$return_param['woo-mecom-return'] = 1;
+	$return_param['woo-infipay-return'] = 1;
 	$return_param['pay-error'] = 1;
 	if (isset($ppOrder->name)) {
 		$return_param['error-name'] = $ppOrder->name;

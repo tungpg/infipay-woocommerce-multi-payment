@@ -42,7 +42,7 @@
 		$pk = ($settings['eh_stripe_mode'] === 'test') ? $settings['eh_stripe_test_publishable_key'] : $settings['eh_stripe_live_publishable_key'];
 		?>
 		window.stripePublicKey = "<?= $pk ?>";
-		window.mecomProxySite = "<?= get_site_url(null, '/checkout', 'https')?>";
+		window.infipayProxySite = "<?= get_site_url(null, '/checkout', 'https')?>";
 	</script>
 	<script src="https://js.stripe.com/v3/"></script>
 	<script src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/checkout.js?v=<?= time()?>"></script>

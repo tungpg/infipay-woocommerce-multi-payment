@@ -33,17 +33,17 @@ function get_access_token() {
 }
 
 if (isset($_GET) ) {
-	if (isset($_GET['mecom-process'])) {
+	if (isset($_GET['infipay-process'])) {
 		include dirname( __FILE__ ) . '/process.php';
-	} else if(isset($_GET['mecom-stripe-get-payment-form'])) {
+	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';
-	} elseif (isset($_GET['mecom-stripe-make-payment'])) {
+	} elseif (isset($_GET['infipay-stripe-make-payment'])) {
 		include dirname( __FILE__ ) . '/stripe-process.php';
 	} elseif(!empty($_GET['action']) && !empty($_GET['token'])) {
 		$_ppOrderId = $_GET['token'];
 		$mainData = get_transient($_ppOrderId);
 		$return_param = array(
-			'woo-mecom-return' => 1,
+			'woo-infipay-return' => 1,
 			'order_id' => $mainData['order_id'],
 			'paymentId' => $_ppOrderId,
 			'token' => $_ppOrderId,
@@ -60,7 +60,7 @@ if (isset($_GET) ) {
 		$returnUrl = add_query_arg($return_param, $mainData['merchant_site'] );
 		// echo $returnUrl;
 		wp_redirect($returnUrl);
-	} elseif (!empty($_GET['mecom-pp-capture-payment'])) {
+	} elseif (!empty($_GET['infipay-pp-capture-payment'])) {
 		include dirname( __FILE__ ) . '/capture.php';
 	}
 }
