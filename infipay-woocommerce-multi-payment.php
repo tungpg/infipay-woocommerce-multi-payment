@@ -36,12 +36,12 @@ function infipay_paypal_plugin_activation() {
 	$page = wp_insert_post( $page_param );
 	
 	// Delete and recreate checkout2 page for normal checkout
-	$page = get_page_by_path( 'checkout2' , OBJECT );
-	if ( isset($page) ) {
-	    wp_delete_post( $page->ID, true );
+	$page2 = get_page_by_path( 'checkout2' , OBJECT );
+	if ( isset($page2) ) {
+	    wp_delete_post( $page2->ID, true );
 	}
 	
-	$page_param = array(
+	$page_param2 = array(
 	    'post_title'  => __( 'Checkout' ),
 	    'post_content'  => __( '[woocommerce_checkout]' ),	    
 	    'post_slug'   => 'checkout2',
@@ -49,7 +49,7 @@ function infipay_paypal_plugin_activation() {
 	    'post_author' => $current_user->ID,
 	    'post_type'   => 'page',
 	);
-	$page = wp_insert_post( $page_param );
+	$page2 = wp_insert_post( $page_param2 );
 }
 
 add_filter( 'page_template', 'infipay_drt_reserve_page_template', 99);
