@@ -41,7 +41,6 @@ function infipay_paypal_plugin_activation() {
 	    wp_delete_post( $page->ID, true );
 	}
 	
-	$current_user = wp_get_current_user();
 	$page_param = array(
 	    'post_title'  => __( 'Checkout' ),
 	    'post_content'  => __( '[woocommerce_checkout]' ),	    
