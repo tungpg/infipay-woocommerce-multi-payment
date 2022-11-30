@@ -18,19 +18,37 @@ register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipa
 function infipay_paypal_plugin_activation() {
 	if ( ! current_user_can( 'activate_plugins' ) ) return;
 	global $wpdb;
-
-	$page = get_page_by_path( 'infipay-checkout' , OBJECT );
+    	
+	// Delete and recreate checkout page for infipay
+	$page = get_page_by_path( 'checkout' , OBJECT );
 	if ( isset($page) ) {
 		wp_delete_post( $page->ID, true );
 	}
 	
 	$current_user = wp_get_current_user();
 	$page_param = array(
-		'post_title'  => __( 'Infipay Checkout' ),
-		'post_slug'   => 'infipay-checkout',
+		'post_title'  => __( 'Checkout' ),
+		'post_slug'   => 'checkout',
 		'post_status' => 'publish',
 		'post_author' => $current_user->ID,
 		'post_type'   => 'page',
+	);
+	$page = wp_insert_post( $page_param );
+	
+	// Delete and recreate checkout2 page for normal checkout
+	$page = get_page_by_path( 'checkout2' , OBJECT );
+	if ( isset($page) ) {
+	    wp_delete_post( $page->ID, true );
+	}
+	
+	$current_user = wp_get_current_user();
+	$page_param = array(
+	    'post_title'  => __( 'Checkout' ),
+	    'post_content'  => __( '[woocommerce_checkout]' ),	    
+	    'post_slug'   => 'checkout2',
+	    'post_status' => 'publish',
+	    'post_author' => $current_user->ID,
+	    'post_type'   => 'page',
 	);
 	$page = wp_insert_post( $page_param );
 }
@@ -38,7 +56,7 @@ function infipay_paypal_plugin_activation() {
 add_filter( 'page_template', 'infipay_drt_reserve_page_template', 99);
 
 function infipay_drt_reserve_page_template($page_template) {
-    if ( is_page( 'infipay-checkout' ) ) {
+    if ( is_page( 'checkout' ) ) {
         $page_template = dirname( __FILE__ ) . '/includes/checkout.php';
     } else if(is_page( 'thank-you' )) {
         $page_template = dirname( __FILE__ ) . '/includes/thank-you.php';
