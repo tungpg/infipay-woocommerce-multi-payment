@@ -11,7 +11,7 @@
  */
 
 define( 'INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE', __FILE__ );
-define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.0' );
+define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '0.9.1' );
 
 register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_paypal_plugin_activation' );
 
@@ -65,7 +65,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 			$this->version       = $plugin_data['Version'];
 			$this->cache_key     = 'infipay_payment_shield_update_checker';
 			$this->cache_allowed = true;
-			$this->_req_url = 'https://payment.infipay.us/index.php?r=site%2Fcheck-version';
+			$this->_req_url = 'https://f002.backblazeb2.com/file/infipay/plugins/infipay-woocommerce-multi-payment.json';
 
 			add_filter( 'plugins_api', array($this, 'info'), 20, 3 );
 			add_filter( 'site_transient_update_plugins', array($this, 'update') );
