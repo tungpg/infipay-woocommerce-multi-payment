@@ -3,7 +3,7 @@
  * Plugin Name: Infipay Woocommerce Multi Payment
  * Plugin URI: 
  * Description: An eCommerce toolkit that helps you sell anything. Beautifully.
- * Version: 0.9.1
+ * Version: 1.0.0
  * Author: Infipay
  * Author URI: https//infipay.us
  * Text Domain: infipay-woocommerce-multi-payment
@@ -11,7 +11,7 @@
  */
 
 define( 'INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE', __FILE__ );
-define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '0.9.1' );
+define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.0.0' );
 
 register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_paypal_plugin_activation' );
 
