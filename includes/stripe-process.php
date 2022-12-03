@@ -25,7 +25,8 @@ $prepareData['metadata'] = array(
 	'Referer' => $refer_url['scheme'] . '://' . $refer_url['host'] . $refer_url['path'],
 	'Billing Email' => $postData['billing_email']
 );
-$prepareData['description'] = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) . ' Order #' . $postData['order_invoice'];
+//$prepareData['description'] = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) . ' Order #' . $postData['order_invoice'];
+$prepareData['description'] = '';
 if (!empty($postData['statement_descriptor'])) {
 	$prepareData['statement_descriptor'] = $postData['statement_descriptor'];
 }
