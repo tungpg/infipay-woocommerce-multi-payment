@@ -41,6 +41,8 @@ if (isset($_GET) ) {
 		include dirname( __FILE__ ) . '/stripe-process.php';
 	} elseif (isset($_GET['infipay-stripe-refund'])) {
 	    include dirname( __FILE__ ) . '/stripe-refund.php';
+	} else if(isset($_GET['infipay-awx-get-payment-form'])) {
+	    include dirname( __FILE__ ) . '/awx-form.php';
 	} elseif(!empty($_GET['action']) && !empty($_GET['token'])) {
 		$_ppOrderId = $_GET['token'];
 		$mainData = get_transient($_ppOrderId);
