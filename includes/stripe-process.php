@@ -37,7 +37,7 @@ foreach ($orderItems as $item) {
 	array_push($product_name, $item['name']);
 }
 $product_list = implode(' | ', $product_name);
-$prepareData['metadata']['Products'] = substr($product_list, 0, 499);
+//$prepareData['metadata']['Products'] = substr($product_list, 0, 499);
 $prepareData['capture_method'] = 'automatic';
 $prepareData['confirm'] =  true ;
 
