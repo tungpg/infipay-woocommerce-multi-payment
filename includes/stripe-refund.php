@@ -15,7 +15,8 @@ $prepareData = array(
     'reason' => $postData['reason'],
 //    'merchant_site' => $postData['merchant_site'],
 );
-
+echo json_encode($prepareData);
+die();
 $response = new stdClass();
 \DRStripe\Stripe::setApiKey( $sk );
 \DRStripe\Stripe::setAppInfo( 'WordPress payment-gateway-stripe-and-woocommerce-integration', '3.0.6', 'https://wordpress.org/plugins/payment-gateway-stripe-and-woocommerce-integration/', 'pp_partner_KHip9dhhenLx0S' );
