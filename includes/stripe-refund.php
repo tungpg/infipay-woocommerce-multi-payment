@@ -15,7 +15,7 @@ $prepareData = array(
     'reason' => $postData['reason'],
 //    'merchant_site' => $postData['merchant_site'],
 );
-echo json_encode($prepareData);
+echo json_encode($content);
 die();
 $response = new stdClass();
 \DRStripe\Stripe::setApiKey( $sk );
