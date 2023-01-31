@@ -77,8 +77,16 @@ try {
 	$intent = \DRStripe\PaymentIntent::create( $prepareData , array(
 		'idempotency_key' => $postData['order_invoice'] .'-'.$payment_method
 	));
-	$response->payment_intent = $intent;
-	$response->status = 'success';
+	
+	// If the payment requires additional actions, such as authenticating with 3D Secure
+	if($intent->status == 'requires_action'){
+	    $response->status = $intent->status;
+	    $response->error_message = '3D Secure';
+	}else{
+	    $response->payment_intent = $intent;
+	    $response->status = 'success';
+	}
+	
 } catch (Exception $error) {
 	if (method_exists($error, 'getJsonBody')) {
 		$oops = $error->getJsonBody();
