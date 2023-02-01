@@ -79,12 +79,12 @@ try {
 	));
 	
 	// If the payment requires additional actions, such as authenticating with 3D Secure
-	if($intent->status == 'requires_action'){
-	    $response->status = $intent->status;
-	    $response->error_message = '3D Secure';
-	}else{
+	if($intent->status == 'succeeded'){
 	    $response->payment_intent = $intent;
 	    $response->status = 'success';
+	}elseif($intent->status == 'requires_action'){
+	    $response->status = $intent->status;
+	    $response->error_message = '3D Secure';
 	}
 	
 } catch (Exception $error) {
