@@ -74,8 +74,20 @@ if (!empty($settings['eh_stripe_statement_descriptor'])) {
 
 // $prepareData['payment_method_types'] = array('card');
 try {
+    // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
+    $guidv4_data = $guidv4_data ?? random_bytes(16);
+    assert(strlen($guidv4_data) == 16);
+    
+    // Set version to 0100
+    $guidv4_data[6] = chr(ord($guidv4_data[6]) & 0x0f | 0x40);
+    // Set bits 6-7 to 10
+    $guidv4_data[8] = chr(ord($guidv4_data[8]) & 0x3f | 0x80);
+    
+    // Output the 36 character UUID.
+    $myuuid = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($guidv4_data), 4));
+    
 	$intent = \DRStripe\PaymentIntent::create( $prepareData , array(
-	    'idempotency_key' => $postData['order_invoice'] . '-' . md5($postData['merchant_site'] . '-' . $payment_method) ,
+	    'idempotency_key' => md5($postData['merchant_site'] . '-' . $myuuid) ,
 	));
 
 	$response->status = $intent->status;
