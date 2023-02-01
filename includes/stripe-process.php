@@ -75,7 +75,7 @@ if (!empty($settings['eh_stripe_statement_descriptor'])) {
 // $prepareData['payment_method_types'] = array('card');
 try {
 	$intent = \DRStripe\PaymentIntent::create( $prepareData , array(
-		'idempotency_key' => $postData['order_invoice'] .'-'.$payment_method
+	    'idempotency_key' => $postData['order_invoice'] . '-' . md5($postData['merchant_site']),
 	));
 
 	$response->status = $intent->status;
