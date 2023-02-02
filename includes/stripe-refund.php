@@ -28,8 +28,9 @@ if (!empty($postData['transaction_id'])) {
             'reason' => $prepareData['reason'],
         ]);
         
+        $response->status = $re->status;
+        
         if($re->status == "succeeded"){
-            $response->status = 'success';
             
             $response->refund_obj = $re;
             $response->charge_obj = \DRStripe\Charge::retrieve(
@@ -37,7 +38,6 @@ if (!empty($postData['transaction_id'])) {
                 []
                 );;
         }else{
-            $response->status = 'error';
             $response->error_message = "Refund failed!";
         }
     } catch (Exception $error) {
