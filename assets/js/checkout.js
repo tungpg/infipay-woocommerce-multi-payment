@@ -80,6 +80,32 @@ function initialize() {
 
 function handleSubmit(formData) {
     parent.postMessage('infipay-startSubmitPaymentStripe', '*')
+    stripe.confirmCardPayment({
+        card: window.stripe_card,
+        billing_details: formData.billing_details
+    }).then(function (e) {
+        if (e.paymentIntent && e.paymentIntent.id) {
+            parent.postMessage({
+                name: 'infipay-paymentIntentIdStripe',
+                value: e.paymentIntent.id
+            }, '*');
+        } else if (e.error) {
+            if (['incomplete_number', 'invalid_number', 'incomplete_expiry', 'invalid_expiry', 'incomplete_cvc', 'invalid_cvc'].includes(e.error.code)) {
+                parent.postMessage('infipay-endSubmitPaymentStripe', '*')
+            } else {
+                parent.postMessage({
+                    name: 'infipay-errorSubmitPaymentStripe',
+                    value: e.error.message
+                }, '*');
+            }
+        } else {
+            parent.postMessage('infipay-endSubmitPaymentStripe', '*')
+        }
+    })
+}
+
+/*function handleSubmit(formData) {
+    parent.postMessage('infipay-startSubmitPaymentStripe', '*')
     stripe.createPaymentMethod({
         type: 'card',
         card: window.stripe_card,
@@ -103,7 +129,7 @@ function handleSubmit(formData) {
             parent.postMessage('infipay-endSubmitPaymentStripe', '*')
         }
     })
-}
+}*/
 
 function updateCardBrand( brand ) {
     var brandClass = {
