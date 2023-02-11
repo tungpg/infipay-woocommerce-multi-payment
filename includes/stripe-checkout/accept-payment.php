@@ -4,7 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-include_once 'config.php';
 require __DIR__  . '/stripe-php-master/init.php';
 
 $staccid = $_GET["staccid"];
