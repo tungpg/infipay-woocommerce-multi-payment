@@ -85,6 +85,15 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 			add_action( 'wp_ajax_infipay_payment_shield_get_update', array($this, 'ajax_clear_update_info') );
 			
 			add_action('admin_menu', [$this, 'add_infipay_stripe_paygate_menu']);
+			add_action( 'admin_init', 'register_mysettings' );
+		}
+		
+		function register_mysettings() { // whitelist options
+		    global $ifp_options;
+		    
+		    foreach ( $ifp_options as $name => $val ) {
+		        register_setting( 'infipay-options-group', $name );
+		    }
 		}
 		
 		function add_infipay_stripe_paygate_menu()
@@ -125,7 +134,11 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		{
 	    ?>
             <h3>Infipay Multi Payment Settings</h3>
-
+			<form method="post" action="options.php">
+			<?php 
+	    	settings_fields( 'infipay-options-group' );
+	    	do_settings_sections( 'infipay-options-group' );
+	    	?>
 	    	<table class="form-table">
     			<tr valign="top">
     				<th scope="row">
@@ -140,6 +153,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button-primary" value="Save Changes"/>
 			</p>
+			</form>
             <?php
         }
 	}
