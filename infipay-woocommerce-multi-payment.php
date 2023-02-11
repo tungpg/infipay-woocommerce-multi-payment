@@ -134,7 +134,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		{
 	    ?>
             <h3>Infipay Multi Payment Settings</h3>
-			<form method="post" action="options.php">
+			<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
 			<?php 
 	    	settings_fields( 'infipay-options-group' );
 	    	do_settings_sections( 'infipay-options-group' );
