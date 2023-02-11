@@ -92,7 +92,6 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		    global $ifp_options;
 		    
 		    $slug = dirname(plugin_basename(__FILE__));
-		    echo "HOHOHO" . $slug;
 		    
 		    foreach ( $ifp_options as $name => $val ) {
 		        register_setting( $slug, $name );
