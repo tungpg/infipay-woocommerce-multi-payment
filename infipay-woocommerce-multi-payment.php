@@ -129,6 +129,8 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		        register_setting( 'infipay-woocommerce-multi-payment', $name );
 		    }
 		    
+		    $slug = plugin_basename( __FILE__ );
+		    echo $slug;
 	    ?>
             <h3>Infipay Multi Payment Settings</h3>
 			<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
