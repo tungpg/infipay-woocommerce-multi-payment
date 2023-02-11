@@ -85,7 +85,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 			add_action( 'wp_ajax_infipay_payment_shield_get_update', array($this, 'ajax_clear_update_info') );
 			
 			add_action('admin_menu', [$this, 'add_infipay_stripe_paygate_menu']);
-			add_action( 'admin_init', 'my_admin_init' );			
+			add_action( 'admin_init', [$this, 'my_admin_init'] );			
 		}
 		
 		function my_admin_init() {
