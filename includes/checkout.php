@@ -46,6 +46,15 @@ if (isset($_GET) ) {
 	    
 	    include dirname( __FILE__ ) . '/paypal-checkout/' . $infipay_paypal_checkout . '.php';
 	    
+	} else if(isset($_GET['infipay-stripe-checkout'])) {
+	    if(empty($tool_server_url)) die();
+	    
+	    define('MULTI_STRIPE_PAYMENT_SERVER_DOMAIN', $tool_server_url);
+	    
+	    $infipay_stripe_checkout = $_GET['infipay-stripe-checkout'];
+	    
+	    include dirname( __FILE__ ) . '/stripe-checkout/' . $infipay_stripe_checkout . '.php';
+	    
 	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';
 	} elseif (isset($_GET['infipay-stripe-make-payment'])) {
