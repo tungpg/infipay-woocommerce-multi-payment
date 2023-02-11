@@ -268,10 +268,10 @@ $transaction->setAmount($amount)
     //->setInvoiceNumber($invoice_id_prefix . $shop_order->shop_order_number);
     ->setInvoiceNumber($invoice_id_prefix);
 
-$baseUrl = "https://$shop_domain/paypal-payment";
+$baseUrl = "https://$shop_domain/icheckout";
 $redirectUrls = new RedirectUrls();
-$redirectUrls->setReturnUrl("$baseUrl/accept-payment.php?appoid=$app_order_id&ppaccid=$ppaccid")
-    ->setCancelUrl("$baseUrl/cancel-payment.php?sbm=$paypal_credential_object->is_sandbox&app_order_id=$app_order_id");
+$redirectUrls->setReturnUrl("$baseUrl/?paypal-checkout=accept-payment&appoid=$app_order_id&ppaccid=$ppaccid")
+    ->setCancelUrl("$baseUrl/?paypal-checkout=cancel-payment&sbm=$paypal_credential_object->is_sandbox&app_order_id=$app_order_id");
 
 $payment = new Payment();
 
