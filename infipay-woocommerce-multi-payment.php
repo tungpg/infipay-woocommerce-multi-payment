@@ -135,6 +135,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		
 		function infipay_page_init()
 		{		    
+		    $slug = dirname(plugin_basename(__FILE__));
 	    ?>
             <h3>Infipay Multi Payment Settings</h3>
 			<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
