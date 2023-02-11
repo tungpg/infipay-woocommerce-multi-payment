@@ -61,7 +61,7 @@ $shop_order = json_decode(stripslashes($order_json));
 
 //=============================
 // Get Paypal Account information
-$get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-payment/get-paypal-credential";
+$get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-checkout-payment/get-paypal-credential";
 
 $options = array(
     'http' => array(

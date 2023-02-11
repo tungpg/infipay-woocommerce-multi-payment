@@ -44,15 +44,7 @@ if (isset($_GET) ) {
 	    
 	    $infipay_paypal_checkout = $_GET['infipay-paypal-checkout'];
 	    
-	    switch($infipay_paypal_checkout){
-	        case "request-payment":
-	            include dirname( __FILE__ ) . '/paypal-checkout/request-payment.php';
-	        case "accept-payment":
-	            include dirname( __FILE__ ) . '/paypal-checkout/accept-payment.php';
-	        case "check":
-	            include dirname( __FILE__ ) . '/paypal-checkout/check.php';
-	        default:
-	    }
+	    include dirname( __FILE__ ) . '/paypal-checkout/' . $infipay_paypal_checkout . '.php';
 	    
 	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';

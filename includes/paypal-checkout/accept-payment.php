@@ -23,7 +23,7 @@ if(!isset($ppaccid)  || !isset($app_order_id) || !isset($paymentId) || !isset($p
 }
 
 // Get order information
-$get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-payment/get-order-info";
+$get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-checkout-payment/get-order-info";
 
 $options = array(
     'http' => array(
@@ -56,7 +56,7 @@ $app_order = json_decode($order_json);
 // Accept payment
 //=============================
 // Get Paypal Account information
-$get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-payment/get-paypal-credential";
+$get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-checkout-payment/get-paypal-credential";
 
 $options = array(
     'http' => array(
@@ -138,7 +138,7 @@ if(empty($transaction_id)){
 }
 
 // Change the status to processing
-$confirm_order_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-payment/confirm-order";
+$confirm_order_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-checkout-payment/confirm-order";
 
 $options = array(
     'http' => array(
