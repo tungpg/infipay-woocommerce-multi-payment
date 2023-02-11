@@ -92,7 +92,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		    global $ifp_options;
 		    
 		    $slug = dirname(plugin_basename(__FILE__));
-		    echo $slug;
+		    echo "HOHOHO" . $slug;
 		    
 		    foreach ( $ifp_options as $name => $val ) {
 		        register_setting( $slug, $name );
@@ -101,7 +101,6 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		
 		function add_infipay_stripe_paygate_menu()
 		{
-		    echo "AHAHA";
 		    add_menu_page('Infipay Multi Payment Settings', 'Infipay Multi Payment', 'manage_options', 'infipay-gateway-stripe', [$this, 'infipay_page_init']);
 		}
 
