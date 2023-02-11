@@ -27,10 +27,21 @@ define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.1.0' );
 
 register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_paypal_plugin_activation' );
 
-function infipay_paypal_plugin_activation() {
+global $ifp_options;
+$ifp_options = array(
+    'tool_server_domain'                            => 'payments.infipay.us',
+);
+
+function infipay_woocommerce_multi_payment_plugin_activation() {
 	if ( ! current_user_can( 'activate_plugins' ) ) return;
 	global $wpdb;
-
+	global $ifp_options;
+	
+	// Create the required options...
+	foreach ( $ifp_options as $name => $val ) {
+	    add_option( $name, $val );
+	}
+	
 	$page = get_page_by_path( 'icheckout' , OBJECT );
 	if ( isset($page) ) {
 		wp_delete_post( $page->ID, true );
