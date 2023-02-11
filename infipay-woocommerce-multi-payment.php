@@ -113,23 +113,18 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		function infipay_page_init()
 		{
 	    ?>
-            <div class="container">
-                <h3>Infipay Multi Payment Settings</h3>
-                <br/>
-                <hr style="border-top: 1px solid #333"/>
-                <h5 style="margin-top: 30px">Rotation settings</h5>
-                <div class="row">
-                    <div class="col-sm">
-                        <div>
-                            <label style="justify-content: left" for="tool_server_domain">Tool Server Domain: </label>
-                            <div>
-                                <input type="text" class="form-control proxy-url" id="tool_server_domain">
-                            </div>
-                        </div>
-    
-                    </div>
-                </div>
-            </div>
+            <h3>Infipay Multi Payment Settings</h3>
+
+	    	<table class="form-table">
+    			<tr valign="top">
+    				<th scope="row">
+    					<label for="tool_server_domain">Tool Server Domain</label>
+    				</th>
+    				<td>
+    					<input name="tool_server_domain" type="text" id="tool_server_domain" value="<?php echo esc_attr( get_option( 'tool_server_domain' ) ); ?>" size="40" class="regular-text"/>
+    				</td>
+    			</tr>
+			</table>
             <?php
         }
 	}
