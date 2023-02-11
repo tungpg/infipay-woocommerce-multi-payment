@@ -124,7 +124,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		function infipay_page_init()
 		{
 		    global $ifp_options;
-		    print_r($ifp_options);echo "HAHAH";
+		    
 		    foreach ( $ifp_options as $name => $val ) {
 		        register_setting( 'infipay-multi-payment-options-group', $name );
 		    }
