@@ -4,7 +4,9 @@ $eh_paypal = get_option("woocommerce_eh_paypal_express_settings");
 $client_id = $eh_paypal['smart_button_environment'] == 'sandbox'? $eh_paypal['sandbox_client_id'] : $eh_paypal['live_client_id'];
 $client_secret = $eh_paypal['smart_button_environment'] == 'sandbox'? $eh_paypal['sandbox_client_secret'] : $eh_paypal['live_client_secret'];
 $REST_API_URL = $eh_paypal['smart_button_environment'] == 'sandbox'? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com';
-echo esc_attr( get_option( 'tool_server_domain' ) );
+
+$tool_server_url = esc_attr( get_option( 'tool_server_domain' ) );
+
 function get_access_token() {
 	global $client_id, $client_secret, $REST_API_URL;
 	$access_token = get_transient('eh_access_token');
@@ -36,6 +38,10 @@ if (isset($_GET) ) {
 	if (isset($_GET['infipay-process'])) {
 		include dirname( __FILE__ ) . '/process.php';
 	} else if(isset($_GET['infipay-paypal-checkout'])) {
+	    if(empty($tool_server_url)) die();
+	    
+	    define('MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN', $tool_server_url);
+	    
 	    $infipay_paypal_checkout = $_GET['infipay-paypal-checkout'];
 	    
 	    switch($infipay_paypal_checkout){
