@@ -23,7 +23,7 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 $myUpdateChecker->setBranch('master');
 
 define( 'INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE', __FILE__ );
-define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.0.0' );
+define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.1.0' );
 
 register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_paypal_plugin_activation' );
 
@@ -72,6 +72,13 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 			add_action( 'wp_ajax_infipay_payment_shield_get_update', array($this, 'ajax_clear_update_info') );
+			
+			add_action('admin_menu', [$this, 'add_infipay_stripe_paygate_menu']);
+		}
+		
+		function add_infipay_stripe_paygate_menu()
+		{
+		    add_menu_page('Infipay Multi Payment Settings', 'Infipay Multi Payment', 'manage_options', 'infipay-gateway-stripe', [$this, 'infipay_page_init']);
 		}
 
 		public function isPluginPage() {
@@ -98,6 +105,33 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 				'body' => $checkData
 			));
 		}
+		
+		/**
+		 * MEcom Stripe Gateway
+		 */
+		
+		function infipay_page_init()
+		{
+	    ?>
+            <div class="container">
+                <h3>Infipay Multi Payment Settings</h3>
+                <br/>
+                <hr style="border-top: 1px solid #333"/>
+                <h5 style="margin-top: 30px">Rotation settings</h5>
+                <div class="row">
+                    <div class="col-sm">
+                        <div>
+                            <label style="justify-content: left" for="tool_server_domain">Tool Server Domain: </label>
+                            <div>
+                                <input type="text" class="form-control proxy-url" id="tool_server_domain">
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
 	}
 
 	new InfipayPayShield();
