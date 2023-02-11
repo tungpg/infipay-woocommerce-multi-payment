@@ -35,6 +35,19 @@ function get_access_token() {
 if (isset($_GET) ) {
 	if (isset($_GET['infipay-process'])) {
 		include dirname( __FILE__ ) . '/process.php';
+	} else if(isset($_GET['infipay-paypal-checkout'])) {
+	    $infipay_paypal_checkout = $_GET['infipay-paypal-checkout'];
+	    
+	    switch($infipay_paypal_checkout){
+	        case "request-payment":
+	            include dirname( __FILE__ ) . '/paypal-checkout/request-payment.php';
+	        case "accept-payment":
+	            include dirname( __FILE__ ) . '/paypal-checkout/accept-payment.php';
+	        case "check":
+	            include dirname( __FILE__ ) . '/paypal-checkout/check.php';
+	        default:
+	    }
+	    
 	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';
 	} elseif (isset($_GET['infipay-stripe-make-payment'])) {
