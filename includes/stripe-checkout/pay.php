@@ -1,5 +1,4 @@
 <?php
-include_once 'config.php';
 require __DIR__  . '/stripe-php-master/init.php';
 
 $session_id = $_GET['session_id'];

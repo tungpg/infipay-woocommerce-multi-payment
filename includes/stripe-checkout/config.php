@@ -1,2 +1,0 @@
-<?php
-define('MULTI_STRIPE_PAYMENT_SERVER_DOMAIN', "AAAAA");

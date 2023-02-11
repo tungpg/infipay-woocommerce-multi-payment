@@ -1,2 +1,0 @@
-<?php
-define('MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN', "AAAAA");

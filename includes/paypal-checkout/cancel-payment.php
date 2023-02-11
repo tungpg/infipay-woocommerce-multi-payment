@@ -1,5 +1,4 @@
 <?php 
-include_once 'config.php';
 
 /**
  * TungPG Mod - Script for Multi Paypal Payment Gateway plugin

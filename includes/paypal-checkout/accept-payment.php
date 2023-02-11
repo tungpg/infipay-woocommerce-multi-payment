@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 
-include_once 'config.php';
 require __DIR__  . '/PayPal-PHP-SDK/autoload.php';
 
 $ppaccid = $_GET["ppaccid"];

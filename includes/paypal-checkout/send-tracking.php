@@ -3,7 +3,6 @@ use PayPal\Api\ShipmentTracking;
 
 require __DIR__  . '/PayPal-PHP-SDK/autoload.php';
 
-include_once 'config.php';
 
 $ppaccid = $_POST["ppaccid"];
 $tracking_number = $_POST["tracking_number"];
