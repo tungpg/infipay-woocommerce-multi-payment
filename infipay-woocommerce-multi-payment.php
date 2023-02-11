@@ -101,6 +101,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		
 		function add_infipay_stripe_paygate_menu()
 		{
+		    echo "AHAHA";
 		    add_menu_page('Infipay Multi Payment Settings', 'Infipay Multi Payment', 'manage_options', 'infipay-gateway-stripe', [$this, 'infipay_page_init']);
 		}
 
