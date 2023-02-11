@@ -85,6 +85,18 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 			add_action( 'wp_ajax_infipay_payment_shield_get_update', array($this, 'ajax_clear_update_info') );
 			
 			add_action('admin_menu', [$this, 'add_infipay_stripe_paygate_menu']);
+			add_action( 'admin_init', 'my_admin_init' );			
+		}
+		
+		function my_admin_init() {
+		    global $ifp_options;
+		    
+		    $slug = dirname(plugin_basename(__FILE__));
+		    echo $slug;
+		    
+		    foreach ( $ifp_options as $name => $val ) {
+		        register_setting( $slug, $name );
+		    }
 		}
 		
 		function add_infipay_stripe_paygate_menu()
@@ -122,15 +134,7 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		 */
 		
 		function infipay_page_init()
-		{
-		    global $ifp_options;
-		    
-		    $slug = dirname(plugin_basename(__FILE__));
-		    echo $slug;
-		    
-		    foreach ( $ifp_options as $name => $val ) {
-		        register_setting( $slug, $name );
-		    }
+		{		    
 	    ?>
             <h3>Infipay Multi Payment Settings</h3>
 			<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
