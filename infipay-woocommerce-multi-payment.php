@@ -126,15 +126,15 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 		    global $ifp_options;
 		    
 		    foreach ( $ifp_options as $name => $val ) {
-		        register_setting( 'infipay-multi-payment-options-group', $name );
+		        register_setting( 'infipay-woocommerce-multi-payment', $name );
 		    }
 		    
 	    ?>
             <h3>Infipay Multi Payment Settings</h3>
 			<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
 			<?php 
-	    	settings_fields( 'infipay-multi-payment-options-group' );
-	    	do_settings_sections( 'infipay-multi-payment-options-group' );
+	    	settings_fields( 'infipay-woocommerce-multi-payment' );
+	    	do_settings_sections( 'infipay-woocommerce-multi-payment' );
 	    	?>
 	    	<table class="form-table">
     			<tr valign="top">
