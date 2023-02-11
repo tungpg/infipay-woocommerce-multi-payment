@@ -37,21 +37,21 @@ function get_access_token() {
 if (isset($_GET) ) {
 	if (isset($_GET['infipay-process'])) {
 		include dirname( __FILE__ ) . '/process.php';
-	} else if(isset($_GET['infipay-paypal-checkout'])) {
+	} else if(isset($_GET['paypal-checkout'])) {
 	    if(empty($tool_server_url)) die();
 	    
 	    define('MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN', $tool_server_url);
 	    
-	    $infipay_paypal_checkout = $_GET['infipay-paypal-checkout'];
+	    $infipay_paypal_checkout = $_GET['paypal-checkout'];
 	    
 	    include dirname( __FILE__ ) . '/paypal-checkout/' . $infipay_paypal_checkout . '.php';
 	    
-	} else if(isset($_GET['infipay-stripe-checkout'])) {
+	} else if(isset($_GET['stripe-checkout'])) {
 	    if(empty($tool_server_url)) die();
 	    
 	    define('MULTI_STRIPE_PAYMENT_SERVER_DOMAIN', $tool_server_url);
 	    
-	    $infipay_stripe_checkout = $_GET['infipay-stripe-checkout'];
+	    $infipay_stripe_checkout = $_GET['stripe-checkout'];
 	    
 	    include dirname( __FILE__ ) . '/stripe-checkout/' . $infipay_stripe_checkout . '.php';
 	    
