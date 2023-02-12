@@ -196,9 +196,9 @@ $item = [
 $line_items[] = $item;
 
 // Create new Checkout Session for the order
-$baseUrl = "https://$shop_domain/stripe-payment";
-$success_url = "$baseUrl/accept-payment.php?appoid=$app_order_id&staccid=$staccid";
-$cancel_url = "$baseUrl/cancel-payment.php?app_order_id=$app_order_id";
+$baseUrl = "https://$shop_domain/icheckout";
+$success_url = "$baseUrl/?stripe-checkout=accept-payment&appoid=$app_order_id&staccid=$staccid";
+$cancel_url = "$baseUrl/?stripe-checkout=cancel-payment&app_order_id=$app_order_id";
 
 $session = null;
 $api_error = null;
