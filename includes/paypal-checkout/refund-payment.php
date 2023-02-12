@@ -59,7 +59,7 @@ try {
         array(
             'mode' => (bool)$is_sandbox? 'sandbox' : 'live',
             'log.LogEnabled' => true,
-            'log.FileName' => './logs/PayPal.log',
+            'log.FileName' => dirname(__FILE__) . '/logs/PayPal.log',
             'log.LogLevel' => 'DEBUG', // PLEASE USE `INFO` LEVEL FOR LOGGING IN LIVE ENVIRONMENTS
             'cache.enabled' => true,
         )
