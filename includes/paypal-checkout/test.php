@@ -8,9 +8,7 @@ error_reporting(E_ALL);
 
 require __DIR__  . '/PayPal-PHP-SDK/autoload.php';
 
-include_once 'config.php';
-
-$ppaccid = "60dec254ae73c95da63e7cc3";
+$ppaccid = $_POST["ppaccid"];
 
 //=============================
 // Get Paypal Account information
