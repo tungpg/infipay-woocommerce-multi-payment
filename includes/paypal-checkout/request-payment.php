@@ -57,9 +57,7 @@ if(empty($invoice_id_prefix)) $invoice_id_prefix = "WCO-";
 
 $shop_domain = $_SERVER['HTTP_HOST'];
 $shop_order = json_decode(stripslashes($order_json));
-echo stripslashes($order_json);
-echo "----------------------";
-print_r($shop_order);
+
 //=============================
 // Get Paypal Account information
 $get_pp_credential_tool_url = "https://" . MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN . "/index.php?r=multi-paypal-checkout-payment/get-paypal-credential";
