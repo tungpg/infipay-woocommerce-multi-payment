@@ -57,7 +57,8 @@ if(empty($invoice_id_prefix)) $invoice_id_prefix = "WCO-";
 
 $shop_domain = $_SERVER['HTTP_HOST'];
 $shop_order = json_decode(stripslashes($order_json));
-echo $order_json;
+echo stripslashes($order_json);
+echo "----------------------";
 print_r($shop_order);
 //=============================
 // Get Paypal Account information
