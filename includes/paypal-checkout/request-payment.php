@@ -280,7 +280,7 @@ $payment->setIntent("sale")
     ->setRedirectUrls($redirectUrls)
     ->setTransactions(array($transaction))
     ->setExperienceProfileId($profileId);
-
+    print_r($payment);
 try {
     $payment->create($apiContext);
 } catch (PayPal\Exception\PayPalConnectionException $ex) {
