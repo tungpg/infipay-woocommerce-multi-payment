@@ -78,7 +78,7 @@ function initialize() {
 }
 
 
-function handleSubmit(formData) {
+/*function handleSubmit(formData) {
     parent.postMessage('infipay-startSubmitPaymentStripe', '*')
     stripe.confirmCardPayment({
         card: window.stripe_card,
@@ -102,9 +102,9 @@ function handleSubmit(formData) {
             parent.postMessage('infipay-endSubmitPaymentStripe', '*')
         }
     })
-}
+}*/
 
-/*function handleSubmit(formData) {
+function handleSubmit(formData) {
     parent.postMessage('infipay-startSubmitPaymentStripe', '*')
     stripe.createPaymentMethod({
         type: 'card',
@@ -129,7 +129,7 @@ function handleSubmit(formData) {
             parent.postMessage('infipay-endSubmitPaymentStripe', '*')
         }
     })
-}*/
+}
 
 function updateCardBrand( brand ) {
     var brandClass = {
