@@ -23,7 +23,7 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 $myUpdateChecker->setBranch('master');
 
 define( 'INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE', __FILE__ );
-define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.1.0' );
+define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.1.1' );
 
 register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_woocommerce_multi_payment_plugin_activation' );
 
