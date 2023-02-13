@@ -3,7 +3,7 @@
  * Plugin Name: Infipay Woocommerce Multi Payment
  * Plugin URI: 
  * Description: The plugin installs on websites that register with the payment gateway to support the Infipay multi-payment plugin.
- * Version: 1.0.2
+ * Version: 1.1.0
  * Author: Infipay
  * Author URI: https//infipay.us
  * Text Domain: infipay-woocommerce-multi-payment
@@ -23,14 +23,25 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 $myUpdateChecker->setBranch('master');
 
 define( 'INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE', __FILE__ );
-define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.0.2' );
+define( 'INFIPAY_PAYMENT_STRIPE_VERSION', '1.1.0' );
 
-register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_paypal_plugin_activation' );
+register_activation_hook( INFIPAY_WOOCOMMERCE_MULTI_PAYMENT_PLUGIN_FILE, 'infipay_woocommerce_multi_payment_plugin_activation' );
 
-function infipay_paypal_plugin_activation() {
+global $ifp_options;
+$ifp_options = array(
+    'tool_server_domain'                            => 'payments.infipay.us',
+);
+
+function infipay_woocommerce_multi_payment_plugin_activation() {
 	if ( ! current_user_can( 'activate_plugins' ) ) return;
 	global $wpdb;
-
+	global $ifp_options;
+	
+	// Create the required options...
+	foreach ( $ifp_options as $name => $val ) {
+	    add_option( $name, $val );
+	}
+	
 	$page = get_page_by_path( 'icheckout' , OBJECT );
 	if ( isset($page) ) {
 		wp_delete_post( $page->ID, true );
@@ -72,6 +83,24 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 			add_action( 'wp_ajax_infipay_payment_shield_get_update', array($this, 'ajax_clear_update_info') );
+			
+			add_action('admin_menu', [$this, 'add_infipay_stripe_paygate_menu']);
+			add_action( 'admin_init', [$this, 'my_admin_init'] );			
+		}
+		
+		function my_admin_init() {
+		    global $ifp_options;
+		    
+		    $slug = dirname(plugin_basename(__FILE__));
+		    
+		    foreach ( $ifp_options as $name => $val ) {
+		        register_setting( $slug, $name );
+		    }
+		}
+		
+		function add_infipay_stripe_paygate_menu()
+		{
+		    add_menu_page('Infipay Multi Payment Settings', 'Infipay Multi Payment', 'manage_options', 'infipay-gateway-stripe', [$this, 'infipay_page_init']);
 		}
 
 		public function isPluginPage() {
@@ -98,6 +127,38 @@ if ( ! class_exists( 'InfipayPayShield' ) ) {
 				'body' => $checkData
 			));
 		}
+		
+		/**
+		 * MEcom Stripe Gateway
+		 */
+		
+		function infipay_page_init()
+		{		    
+		    $slug = dirname(plugin_basename(__FILE__));
+	    ?>
+            <h3>Infipay Multi Payment Settings</h3>
+			<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
+			<?php 
+			settings_fields( $slug );
+			do_settings_sections( $slug );
+	    	?>
+	    	<table class="form-table">
+    			<tr valign="top">
+    				<th scope="row">
+    					<label for="tool_server_domain">Tool Server Domain</label>
+    				</th>
+    				<td>
+    					<input name="tool_server_domain" type="text" id="tool_server_domain" value="<?php echo esc_attr( get_option( 'tool_server_domain' ) ); ?>" size="40" class="regular-text"/>
+    				</td>
+    			</tr>
+			</table>
+			
+			<p class="submit">
+				<input type="submit" name="submit" id="submit" class="button-primary" value="Save Changes"/>
+			</p>
+			</form>
+            <?php
+        }
 	}
 
 	new InfipayPayShield();
