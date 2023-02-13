@@ -2,9 +2,9 @@
 
 namespace DRStripe\HttpClient;
 
-use Stripe\Exception;
-use Stripe\Stripe;
-use Stripe\Util;
+use DRStripe\Exception;
+use DRStripe\Stripe;
+use DRStripe\Util;
 
 // @codingStandardsIgnoreStart
 // PSR2 requires all constants be upper case. Sadly, the CURL_SSLVERSION
