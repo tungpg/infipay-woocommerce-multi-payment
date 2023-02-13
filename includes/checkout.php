@@ -5,8 +5,6 @@ $client_id = $eh_paypal['smart_button_environment'] == 'sandbox'? $eh_paypal['sa
 $client_secret = $eh_paypal['smart_button_environment'] == 'sandbox'? $eh_paypal['sandbox_client_secret'] : $eh_paypal['live_client_secret'];
 $REST_API_URL = $eh_paypal['smart_button_environment'] == 'sandbox'? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com';
 
-$tool_server_url = esc_attr( get_option( 'tool_server_domain' ) );
-
 function get_access_token() {
 	global $client_id, $client_secret, $REST_API_URL;
 	$access_token = get_transient('eh_access_token');
@@ -38,6 +36,8 @@ if (isset($_GET) ) {
 	if (isset($_GET['infipay-process'])) {
 		include dirname( __FILE__ ) . '/process.php';
 	} else if(isset($_GET['paypal-checkout'])) {
+	    $tool_server_url = esc_attr( get_option( 'tool_server_domain' ) );
+	    
 	    if(empty($tool_server_url)) die();
 	    
 	    define('MULTI_PAYPAL_PAYMENT_SERVER_DOMAIN', $tool_server_url);
@@ -47,6 +47,8 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/paypal-checkout/' . $infipay_paypal_checkout . '.php';
 	    
 	} else if(isset($_GET['stripe-checkout'])) {
+	    $tool_server_url = esc_attr( get_option( 'tool_server_domain' ) );
+	    
 	    if(empty($tool_server_url)) die();
 	    
 	    define('MULTI_STRIPE_PAYMENT_SERVER_DOMAIN', $tool_server_url);
