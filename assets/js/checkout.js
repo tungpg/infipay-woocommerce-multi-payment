@@ -8,7 +8,7 @@ Object.defineProperty(document, "referrer", {
 var elements;
 initialize();
 
-document.querySelector("#payment-form").addEventListener("submit", handleSubmit);
+document.querySelector("#infipay-payment-form").addEventListener("submit", handleSubmit);
 
 function initialize() {
     elements = stripe.elements();

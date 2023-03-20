@@ -11,7 +11,7 @@ $shop_domain = $_SERVER['HTTP_HOST'];
 	<link rel="stylesheet" href="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/css/stripe-payment-form.css?v=<?= time() ?>" />
 </head>
 <body>
-	<form id="payment-form">
+	<form id="infipay-payment-form">
 		<div class="wc_payment_method payment_method_airwallex_card">
         	<input id="payment_method_airwallex_card" type="radio" class="input-radio" name="payment_method" value="airwallex_card" checked="checked" data-order_button_text="">
         	<label for="payment_method_airwallex_card">

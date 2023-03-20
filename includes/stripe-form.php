@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/css/stripe-payment-form.css?v=<?= time() ?>" />
 </head>
 <body>
-	<form id="payment-form">
+	<form id="infipay-payment-form">
 		<!-- <div id="payment-element"></div> -->
 		<fieldset class="infipay-credit-card-form wc-payment-form" style="background:transparent;">
 			<div class="form-row form-row-wide">
