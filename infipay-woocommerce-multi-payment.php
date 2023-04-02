@@ -3,7 +3,7 @@
  * Plugin Name: Infipay Woocommerce Multi Payment
  * Plugin URI: 
  * Description: The plugin installs on websites that register with the payment gateway to support the Infipay multi-payment plugin.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: Infipay
  * Author URI: https//infipay.us
  * Text Domain: infipay-woocommerce-multi-payment

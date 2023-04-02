@@ -37,6 +37,15 @@ function get_access_token() {
 if (isset($_GET) ) {
 	if (isset($_GET['infipay-process'])) {
 		include dirname( __FILE__ ) . '/process.php';
+	} else if(isset($_GET['airwallex-checkout'])) {
+	    if(empty($tool_server_url)) die();
+	    
+	    define('MULTI_STRIPE_PAYMENT_SERVER_DOMAIN', $tool_server_url);
+	    
+	    $infipay_airwallex_checkout = $_GET['airwallex-checkout'];
+	    
+	    include dirname( __FILE__ ) . '/airwallex-checkout/' . $infipay_airwallex_checkout . '.php';
+	    
 	} else if(isset($_GET['paypal-checkout'])) {
 	    if(empty($tool_server_url)) die();
 	    
