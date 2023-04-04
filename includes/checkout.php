@@ -63,6 +63,9 @@ if (isset($_GET) ) {
 	    $infipay_stripe_checkout = $_GET['stripe-checkout'];
 	    
 	    include dirname( __FILE__ ) . '/stripe-checkout/' . $infipay_stripe_checkout . '.php';
+
+	} else if(isset($_GET['infipay-awx-get-payment-form'])) {
+	    include dirname( __FILE__ ) . '/awx-form.php';
 	    
 	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';

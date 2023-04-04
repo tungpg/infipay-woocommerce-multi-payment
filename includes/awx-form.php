@@ -1,40 +1,204 @@
-<?php 
-$shop_domain = $_SERVER['HTTP_HOST'];
-?>
 
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/css/stripe-payment-form.css?v=<?= time() ?>" />
+<link rel='dns-prefetch' href='//checkout.airwallex.com' />
+<link rel='stylesheet' id='airwallex-css-css' href='<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/css/airwallex-checkout.css?ver=6.0.3' media='all' />
 </head>
+
 <body>
-	<form id="infipay-payment-form">
-		<div class="wc_payment_method payment_method_airwallex_card">
-        	<input id="payment_method_airwallex_card" type="radio" class="input-radio" name="payment_method" value="airwallex_card" checked="checked" data-order_button_text="">
-        	<label for="payment_method_airwallex_card">
-        	Credit Card <img src="https://<?=$shop_domain;?>/wp-content/plugins/airwallex-online-payments-gateway/assets/images/airwallex_cc_icon.svg" alt="Credit Card">	</label>
-        	<div class="payment_box payment_method_airwallex_card" style="">
-        		<p>Pay via AWX</p>
-        		<div id="airwallex-card">
-        			<iframe frameborder="0" allowtransparency="true" importance="high" scrolling="no" allowpaymentrequest="true" style="transition: height 0.35s ease 0s; height: 23.9844px; width: 100%; display: block;" src="https://checkout-demo.airwallex.com/#/elements/card?options={&quot;style&quot;:{&quot;popupWidth&quot;:400,&quot;popupHeight&quot;:549},&quot;origin&quot;:&quot;https://<?=$shop_domain;?>&quot;}&amp;lang=undefined" name="Airwallex card element iframe" title="Airwallex card element iframe"/>
-        		</div>
-        	</div>
-        </div>
-	</form>
-	<script>
-		<?php 
-		$setting_key = 'woocommerce_eh_stripe_pay_settings';
-		$settings = get_option($setting_key, false);
-		
-		$pk = ($settings['eh_stripe_mode'] === 'test') ? $settings['eh_stripe_test_publishable_key'] : $settings['eh_stripe_live_publishable_key'];
-		?>
-		window.stripePublicKey = "<?= $pk ?>";
-		window.infipayProxySite = "<?= get_site_url(null, '/checkout', 'https')?>";
-	</script>
-	<script src="https://js.stripe.com/v3/"></script>
-	<script src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/checkout.js?v=<?= time()?>"></script>
+
+	<div id="airwallex-card"></div>
+	<script src='<?=includes_url()?>/js/jquery/jquery.min.js?ver=3.6.0'
+		id='jquery-core-js'></script>
+	<script
+		src='<?=includes_url()?>/js/jquery/jquery-migrate.min.js?ver=3.3.2'
+		id='jquery-migrate-js'></script>
+	<script type='text/javascript'
+		src='<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.7.1.0'
+		id='jquery-blockui-js'></script>
+	<script
+		src='https://checkout.airwallex.com/assets/elements.bundle.min.js?ver=6.0.3'
+		id='airwallex-lib-js-js'></script>
+	<script
+		src="<?php echo plugins_url('assets/js/custom-payment-local.js?a='.time(), __FILE__); ?>"
+		id='airwallex-local-js-js'></script>
+
+	<script id='airwallex-local-js-js-after'>
+            const AirwallexParameters = {
+                asyncIntentUrl: "<?=WooCommerce::instance()->api_request_url('checkout_async_intent')?>",
+                confirmationUrl: "<?=WooCommerce::instance()->api_request_url('airwallex_payment_confirmation')?>"
+            };
+            const airwallexCheckoutProcessingAction = function(msg) {
+                if (msg && msg.indexOf('<!--Airwallex payment processing-->') !== -1) {
+                    // confirmSlimCardPayment();
+                }
+            }
+
+            jQuery(document.body).on('checkout_error', function(e, msg) {
+                airwallexCheckoutProcessingAction(msg);
+            });
+
+            //for plugin CheckoutWC
+            window.addEventListener('cfw-checkout-failed-before-error-message', function(event) {
+                if (typeof event.detail.response.messages === 'undefined') {
+                    return;
+                }
+                airwallexCheckoutProcessingAction(event.detail.response.messages);
+            });
+
+            //this is for payment changes after order placement
+            // jQuery('#order_review').on('submit', function(e) {
+            //     let airwallexCardPaymentOption = jQuery('#payment_method_airwallex_card');
+            //     if (airwallexCardPaymentOption.length && airwallexCardPaymentOption.is(':checked')) {
+            //         if (jQuery('#airwallex-card').length) {
+            //             e.preventDefault();
+            //             confirmSlimCardPayment(0);
+            //         }
+            //     }
+            // });
+
+            function handleSubmit(formData) {
+                parent.postMessage("mecom-startSubmitPaymentStripe", "*");
+                confirmSlimCardPayment(0, formData);
+            }
+
+
+            Airwallex.init({
+                env: 'prod',
+                origin: window.location.origin, // Setup your event target to receive the browser events message
+            });
+
+            const airwallexSlimCard = Airwallex.createElement('card', {
+                style: {
+                    popupWidth: 400,
+                    popupHeight: 549,
+                },
+            });
+
+            airwallexSlimCard.mount('airwallex-card');
+            setInterval(function() {
+                if (document.getElementById('airwallex-card') && !document.querySelector('#airwallex-card iframe')) {
+                    try {
+                        airwallexSlimCard.mount('airwallex-card')
+                    } catch {
+
+                    }
+                }
+            }, 1000);
+
+            function confirmSlimCardPayment(orderId, formData) {
+                //timeout necessary because of event order in plugin CheckoutWC
+                setTimeout(function() {
+                    jQuery('form.checkout').block({
+                        message: null,
+                        overlayCSS: {
+                            background: '#fff',
+                            opacity: 0.6
+                        }
+                    });
+                }, 50);
+
+                let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
+                if (orderId) {
+                    asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
+                }
+                var dataPost = formData.billing_details;
+                AirwallexClient.ajaxPost(asyncIntentUrl, dataPost, function(data) {
+                    if (!data || data.error) {
+                        parent.postMessage({
+                            name: "mecom-errorSubmitPaymentStripe",
+                            value: String('An error has occurred. Please check your payment details (%s)').replace('%s', '')
+                        }, "*");
+                    }
+                    parent.postMessage({
+                            name: "mecom-endSubmitPaymentStripe",
+                            value: data,
+                            datarq: {'paymentIntent':data.paymentIntent,'clientSecret':data.clientSecret,
+                                card: {
+                                name: AirwallexClient.getCardHolderNameFromClient(dataPost)
+                            },
+                            billing: AirwallexClient.getBillingInformationFromClient(dataPost)
+                        }
+                        }, "*");
+                    //send message to client checkout
+                    Airwallex.confirmPaymentIntent({
+                        element: airwallexSlimCard,
+                        id: data.paymentIntent,
+                        client_secret: data.clientSecret,
+                        payment_method: {
+                            card: {
+                                name: AirwallexClient.getCardHolderNameFromClient(dataPost)
+                            },
+                            billing: AirwallexClient.getBillingInformationFromClient(dataPost)
+                        },
+                        payment_method_options: {
+                            card: {
+                                auto_capture: true,
+                            },
+                        }
+                    }).then((response) => {
+                        // location.href = finalConfirmationUrl;
+                        parent.postMessage({
+                            name: "mecom-endSubmitPaymentStripe",
+                            value: response,
+                            datarq: data
+                        }, "*");
+                    }).catch(err => {
+                        parent.postMessage({
+                            name: "mecom-errorSubmitPaymentStripe",
+                            value: err,
+                            datarq: data
+                        }, "*");
+                        // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
+                    })
+
+                    /*
+                    const finalConfirmationUrl = AirwallexParameters.confirmationUrl + 'order_id=' + data.orderId + '&intent_id=' + data.paymentIntent;
+
+                    Airwallex.confirmPaymentIntent({
+                        element: airwallexSlimCard,
+                        id: data.paymentIntent,
+                        client_secret: data.clientSecret,
+                        payment_method: {
+                            card: {
+                                name: AirwallexClient.getCardHolderName()
+                            },
+                            billing: AirwallexClient.getBillingInformation()
+                        },
+                        payment_method_options: {
+                            card: {
+                                auto_capture: true,
+                            },
+                        }
+                    }).then((response) => {
+                        location.href = finalConfirmationUrl;
+                    }).catch(err => {
+                        console.log(err);
+                        jQuery('form.checkout').unblock();
+                        AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
+                    })
+
+                    */
+                });
+
+            }
+
+            function listener(event) {
+                "object" == typeof event.data && "mecom-submitFormStripe" === event.data.name && handleSubmit(event.data.value)
+            }
+            window.addEventListener ? window.addEventListener("message", listener) : window.attachEvent("onmessage", listener);
+            window.addEventListener('onError', (event) => {
+                if (!event.detail) {
+                    return;
+                }
+                const {
+                    error
+                } = event.detail;
+                AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', error.message || ''));
+            });
+        </script>
+
 </body>
+
 </html>
