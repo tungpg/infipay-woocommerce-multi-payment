@@ -203,8 +203,8 @@
                 const {
                     error
                 } = event.detail;
-                alert("haha");
-                parent.postMessage('infipay-loadedPaymentFormStripe', '*')
+                
+                parent.postMessage('infipay-loadedPaymentFormAirwallex', '*')
             });
         </script>
 
