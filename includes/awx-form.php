@@ -20,7 +20,7 @@
 		src='https://checkout.airwallex.com/assets/elements.bundle.min.js?ver=6.0.3'
 		id='airwallex-lib-js-js'></script>
 	<script
-		src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/custom-payment-local.js?a=<?php echo time();?>"
+		src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/airwallex-checkout.js?a=<?php echo time();?>"
 		id='airwallex-local-js-js'></script>
 
 	<script id='airwallex-local-js-js-after'>
@@ -195,6 +195,16 @@
                     error
                 } = event.detail;
                 AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', error.message || ''));
+            });
+            window.addEventListener('onReady', (event) => {
+                if (!event.detail) {
+                    return;
+                }
+                const {
+                    error
+                } = event.detail;
+                
+                parent.postMessage('infipay-loadedPaymentFormStripe', '*')
             });
         </script>
 
