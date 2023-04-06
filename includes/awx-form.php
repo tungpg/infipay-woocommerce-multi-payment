@@ -9,19 +9,18 @@
 <body>
 
 	<div id="airwallex-card"></div>
-	<script src='<?=includes_url()?>/js/jquery/jquery.min.js?ver=3.6.0'
-		id='jquery-core-js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' id='jquery-core-js'></script>
 	<script
-		src='<?=includes_url()?>/js/jquery/jquery-migrate.min.js?ver=3.3.2'
+		src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js'
 		id='jquery-migrate-js'></script>
 	<script type='text/javascript'
-		src='<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.7.1.0'
+		src='https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js'
 		id='jquery-blockui-js'></script>
 	<script
 		src='https://checkout.airwallex.com/assets/elements.bundle.min.js?ver=6.0.3'
 		id='airwallex-lib-js-js'></script>
 	<script
-		src="<?php echo plugins_url('assets/js/custom-payment-local.js?a='.time(), __FILE__); ?>"
+		src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/custom-payment-local.js?a=<?php echo time();?>"
 		id='airwallex-local-js-js'></script>
 
 	<script id='airwallex-local-js-js-after'>
