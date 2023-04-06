@@ -203,7 +203,7 @@
                 const {
                     error
                 } = event.detail;
-                
+                alert("haha");
                 parent.postMessage('infipay-loadedPaymentFormStripe', '*')
             });
         </script>
