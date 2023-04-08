@@ -3,7 +3,6 @@
 
 <head>
 <link rel='dns-prefetch' href='//checkout.airwallex.com' />
-<link rel='stylesheet' id='airwallex-css-css' href='<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/css/airwallex-checkout.css?ver=6.0.3' media='all' />
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' id='jquery-core-js'></script>
 <script
@@ -18,6 +17,115 @@
 <script
 	src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/airwallex-checkout.js?a=<?php echo time();?>"
 	id='airwallex-local-js-js'></script>
+
+   <style>
+     #cardNumber,
+     #expiry,
+     #cvc {
+       border: 1px solid #612fff;
+       border-radius: 5px;
+       padding: 5px 10px;
+       width: 400px;
+       box-shadow: #612fff 0px 0px 0px 1px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin-top: 5px;
+     }
+     
+     /**
+ * style.css
+ * Airwallex Payment Demo - Static HTML.  Created by Josie Ku.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
+body {
+  font-family: 'AxLLCircular';
+  padding: 15px 25px;
+}
+
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+}
+
+div#links {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 15px;
+  font-family: 'AxLLCircular';
+  padding: 5px 10px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #612fff;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+button:disabled {
+  opacity: 0.75;
+}
+
+p#error {
+  background: #ffebee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  display: none;
+}
+p#success {
+  background: lightgreen;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  display: none;
+}
+
+p#author {
+  position: absolute;
+  bottom: 0;
+}
+
+.field-container {
+  margin: 15px 0px;
+}
+
+div.instruction-container {
+  padding: 10px 50px;
+  text-align: left;
+}
+
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+  margin: 0px 5px;
+}
+
+p#bullet {
+  font-weight: bold;
+}
+
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff');
+  font-family: 'AxLLCircular';
+  weight: 'bold';
+}
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2');
+  font-family: 'AxLLCircular';
+  weight: '400';
+}
+   </style>
 	
 </head>
 
@@ -184,8 +292,8 @@
                ... Handle event on error
              */
                 const { error } = event.detail;
-                document.getElementById("error").style.display = "block"; // Example: show error block
-                document.getElementById("error").innerHTML = error.message; // Example: set error message
+//                 document.getElementById("error").style.display = "block"; // Example: show error block
+//                 document.getElementById("error").innerHTML = error.message; // Example: set error message
                 console.error("There was an error", event.detail.error);
               });
             });
