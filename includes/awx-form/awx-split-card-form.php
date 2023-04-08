@@ -25,7 +25,7 @@
        border: 1px solid #612fff;
        border-radius: 5px;
        padding: 5px 10px;
-       width: 90%;
+       width: 100%;
        box-shadow: #612fff 0px 0px 0px 1px;
        display: flex;
        justify-content: center;
