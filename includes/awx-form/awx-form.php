@@ -182,19 +182,18 @@
 
         }
 
+	    // Listen event from client site
         if (window.addEventListener) {
             window.addEventListener("message", listener);
         } else {
             window.attachEvent("onmessage", listener);
         }
-        
+
         function listener(event) {
-        	if (event.data === "infipay-submitFormAirwallex") {
-        		handleSubmit(event.data.value);
-        	}
-            //"object" == typeof event.data && "infipay-submitFormAirwallex" === event.data.name && handleSubmit(event.data.value)
+            if ((typeof event.data === 'object') && event.data.name === 'infipay-submitFormAirwallex') {
+                handleSubmit(event.data.value);
+            }
         }
-        //window.addEventListener ? window.addEventListener("message", listener) : window.attachEvent("onmessage", listener);
         
         window.addEventListener('onError', (event) => {
             if (!event.detail) {
