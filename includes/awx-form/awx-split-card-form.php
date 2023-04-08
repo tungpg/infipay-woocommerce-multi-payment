@@ -102,7 +102,94 @@
                 document.getElementById("error").innerHTML = error.message; // Example: set error message
             	console.error("There was an error", error);
             }
-            
+
+            // Set up local variable to check all elements are mounted
+            const elementsReady = {
+              cardNumber: false,
+              expiry: false,
+              cvc: false
+            };
+            // STEP #7: Add an event listener to ensure the element is mounted
+            const cardNumberElement = document.getElementById("cardNumber");
+            const expiryElement = document.getElementById("expiry");
+            const cvcElement = document.getElementById("cvc");
+            const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+      
+            domElementArray.forEach((element) => {
+              element.addEventListener("onReady", (event) => {
+                /*
+              ... Handle event
+               */
+                const { type } = event.detail;
+                if (elementsReady.hasOwnProperty(type)) {
+                  elementsReady[type] = true; // Set element ready state
+                }
+      
+                if (!Object.values(elementsReady).includes(false)) {
+                  document.getElementById("loading").style.display = "none"; // Example: hide loading state when element is mounted
+                  document.getElementById("element").style.display = "block"; // Example: show element when mounted
+                }
+              });
+            });            
+
+            // Set up local variable to validate element inputs
+            const elementsCompleted = {
+              cardNumber: false,
+              expiry: false,
+              cvc: false
+            };
+      
+            domElementArray.forEach((element) => {
+              element.addEventListener("onChange", (event) => {
+                /*
+             ... Handle event
+               */
+                const { type, complete } = event.detail;
+                if (elementsCompleted.hasOwnProperty(type)) {
+                  elementsCompleted[type] = complete; // Set element completion state
+                }
+      
+                // Check if all elements are completed, and set submit button disabled state
+                const allElementsCompleted = !Object.values(
+                  elementsCompleted
+                ).includes(false);
+                document.getElementById("submit").disabled = !allElementsCompleted;
+              });
+            });
+      
+            // STEP #9: Add an event listener to get input focus status
+            domElementArray.forEach((element) => {
+              element.addEventListener("onFocus", (event) => {
+                // Customize your input focus style by listen onFocus event
+                const element = document.getElementById(type + "-error");
+                if (element) {
+                  element.innerHTML = ""; // Example: clear input error message
+                }
+              });
+            });
+
+            // STEP #10: Add an event listener to show input error message when finish typing
+            domElementArray.forEach((element) => {
+              element.addEventListener("onBlur", (event) => {
+                const { error, type } = event.detail;
+                const element = document.getElementById(type + "-error");
+                if (element && error) {
+                  element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
+                }
+              });
+            });
+            // STEP #9: Add an event listener to handle events when there is an error
+            domElementArray.forEach((element) => {
+              element.addEventListener("onBlur", (event) => {
+                /*
+               ... Handle event on error
+             */
+                const { error } = event.detail;
+                document.getElementById("error").style.display = "block"; // Example: show error block
+                document.getElementById("error").innerHTML = error.message; // Example: set error message
+                console.error("There was an error", event.detail.error);
+              });
+            });
             
 //             setInterval(function() {
 //                 if (document.getElementById('airwallex-card') && !document.querySelector('#airwallex-card iframe')) {
