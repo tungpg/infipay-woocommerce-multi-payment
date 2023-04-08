@@ -58,7 +58,7 @@
             // });
 
             function handleSubmit(formData) {
-                parent.postMessage("mecom-startSubmitPaymentStripe", "*");
+                parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
                 confirmSlimCardPayment(0, formData);
             }
 
@@ -106,12 +106,12 @@
                 AirwallexClient.ajaxPost(asyncIntentUrl, dataPost, function(data) {
                     if (!data || data.error) {
                         parent.postMessage({
-                            name: "mecom-errorSubmitPaymentStripe",
+                            name: "infipay-errorSubmitPaymentAirwallex",
                             value: String('An error has occurred. Please check your payment details (%s)').replace('%s', '')
                         }, "*");
                     }
                     parent.postMessage({
-                            name: "mecom-endSubmitPaymentStripe",
+                            name: "infipay-endSubmitPaymentAirwallex",
                             value: data,
                             datarq: {'paymentIntent':data.paymentIntent,'clientSecret':data.clientSecret,
                                 card: {
@@ -139,13 +139,13 @@
                     }).then((response) => {
                         // location.href = finalConfirmationUrl;
                         parent.postMessage({
-                            name: "mecom-endSubmitPaymentStripe",
+                            name: "infipay-endSubmitPaymentAirwallex",
                             value: response,
                             datarq: data
                         }, "*");
                     }).catch(err => {
                         parent.postMessage({
-                            name: "mecom-errorSubmitPaymentStripe",
+                            name: "infipay-errorSubmitPaymentAirwallex",
                             value: err,
                             datarq: data
                         }, "*");
@@ -183,10 +183,20 @@
 
             }
 
-            function listener(event) {
-                "object" == typeof event.data && "mecom-submitFormStripe" === event.data.name && handleSubmit(event.data.value)
+            if (window.addEventListener) {
+                window.addEventListener("message", listener);
+            } else {
+                window.attachEvent("onmessage", listener);
             }
-            window.addEventListener ? window.addEventListener("message", listener) : window.attachEvent("onmessage", listener);
+            
+            function listener(event) {
+            	if (event.data === "infipay-submitFormAirwallex") {
+            		handleSubmit(event.data.value)
+            	}
+                //"object" == typeof event.data && "infipay-submitFormAirwallex" === event.data.name && handleSubmit(event.data.value)
+            }
+            //window.addEventListener ? window.addEventListener("message", listener) : window.attachEvent("onmessage", listener);
+            
             window.addEventListener('onError', (event) => {
                 if (!event.detail) {
                     return;
