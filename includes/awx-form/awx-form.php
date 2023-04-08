@@ -58,7 +58,7 @@
         function handleSubmit(formData) {
             parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
             jQuery('#imessage').html('hahaah');
-            confirmSlimCardPayment(0, formData);
+            //confirmSlimCardPayment(0, formData);
         }
 
 
@@ -190,7 +190,7 @@
         
         function listener(event) {
         	if (event.data === "infipay-submitFormAirwallex") {
-        		handleSubmit(event.data.value)
+        		handleSubmit(event.data.value);
         	}
             //"object" == typeof event.data && "infipay-submitFormAirwallex" === event.data.name && handleSubmit(event.data.value)
         }
