@@ -18,27 +18,31 @@
 <script
 	src="<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/js/airwallex-checkout.js?a=<?php echo time();?>"
 	id='airwallex-local-js-js'></script>
-
+	
 </head>
 
 <body>
 
-    <!-- Add empty containers for each card input element  -->
-    <div style={containerStyle}>
-        <div>Card number</div>
-        <div id="cardNumber"></div>
-      </div>
-      <div style={containerStyle}>
-        <div>Expiry</div>
-        <div id="expiry"></div>
-      </div>
-      <div style={containerStyle}>
-        <div>CVC</div>
-        <div id="cvc"></div>
+    <!-- Hide all elements before they are all mounted -->
+    <div id="element" style="display: none;">
+       <div class="field-container">
+         <div>Card number</div>
+         <div id="cardNumber"></div>
+         <p id="cardNumber-error" style="color: red;"></p>
+       </div>
+       <div class="field-container">
+         <div>Expiry</div>
+         <div id="expiry"></div>
+         <p id="expiry-error" style="color: red;"></p>
+       </div>
+       <div class="field-container">
+         <div>Cvc</div>
+         <div id="cvc"></div>
+         <p id="cvc-error" style="color: red;"></p>
+       </div>
     </div>
+	<p id="error"></p>
 	
-	
-
 	<script id='airwallex-local-js-js-after'>
             const AirwallexParameters = {
                 asyncIntentUrl: "<?=WooCommerce::instance()->api_request_url('checkout_async_intent')?>",
@@ -78,21 +82,27 @@
                 confirmSlimCardPayment(0, formData);
             }
 
+            try {
+                Airwallex.init({
+                    env: 'prod',
+                    origin: window.location.origin, // Setup your event target to receive the browser events message
+                });
 
-            Airwallex.init({
-                env: 'prod',
-                origin: window.location.origin, // Setup your event target to receive the browser events message
-            });
+             	// Create split card elements
+                const cardNumber = Airwallex.createElement("cardNumber");
+                const expiry = Airwallex.createElement("expiry");
+                const cvc = Airwallex.createElement("cvc");
 
-         	// Create split card elements
-            const cardNumber = Airwallex.createElement('cardNumber');
-            const expiry = Airwallex.createElement('expiry');
-            const cvc = Airwallex.createElement('cvc');
-
-            // Mount split card elements
-            cardNumber.mount('cardNumber'); // Injects iframe into the Card Number Element container
-            expiry.mount('expiry'); // Injects iframe into the Expiry Element container
-            cvc.mount('cvc'); // Injects iframe into the CVC Element container
+                // Mount split card elements
+                cardNumber.mount('cardNumber'); // Injects iframe into the Card Number Element container
+                expiry.mount('expiry'); // Injects iframe into the Expiry Element container
+                cvc.mount('cvc'); // Injects iframe into the CVC Element container                
+            } catch (error) {
+                document.getElementById("error").style.display = "block"; // Example: show error
+                document.getElementById("error").innerHTML = error.message; // Example: set error message
+            	console.error("There was an error", error);
+            }
+            
             
 //             setInterval(function() {
 //                 if (document.getElementById('airwallex-card') && !document.querySelector('#airwallex-card iframe')) {
