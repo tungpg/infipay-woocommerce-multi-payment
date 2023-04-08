@@ -126,7 +126,6 @@
                 }
       
                 if (!Object.values(elementsReady).includes(false)) {
-                  document.getElementById("loading").style.display = "none"; // Example: hide loading state when element is mounted
                   document.getElementById("element").style.display = "block"; // Example: show element when mounted
                 }
               });
