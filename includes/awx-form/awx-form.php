@@ -3,7 +3,7 @@
 
 <head>
 <link rel='dns-prefetch' href='//checkout.airwallex.com' />
-<link rel='stylesheet' id='airwallex-css-css' href='<?php echo esc_url(plugin_dir_url(__DIR__))?>assets/css/airwallex-checkout.css?ver=6.0.3' media='all' />
+<link rel='stylesheet' id='airwallex-css-css' href='<?php echo esc_url(plugin_dir_url(__DIR__))?>../assets/css/airwallex-checkout.css?ver=6.0.3' media='all' />
 </head>
 
 <body>
