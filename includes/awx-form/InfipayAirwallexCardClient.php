@@ -4,6 +4,8 @@ use Airwallex\CardClient;
 class InfipayAirwallexCardClient extends CardClient
 {
     final public function createPaymentIntentExt($dataPayment, $withDetails = false){
+        $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
+        
         $client = $this->getHttpClient();
         // $orderNumber = ($orderNumber = $order->get_meta('_order_number')) ? $orderNumber : $orderId;
         $customerId=null;
@@ -15,7 +17,7 @@ class InfipayAirwallexCardClient extends CardClient
                 'wp_order_id' => $dataPayment['payment_id'],
             ],
             'merchant_order_id' => $dataPayment['payment_id'],
-            'return_url' => WC()->api_request_url('airwallex_payment_process'),//WC()->api_request_url(Main::ROUTE_SLUG_CONFIRMATION),
+            'return_url' => "$infipay_checkout_page_url?infipay-awx-confirm-payment=1",
             'order' => [
                 'type' => 'physical_goods',
             ],
