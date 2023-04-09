@@ -1,6 +1,6 @@
 <?php 
 $shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
-echo $shop_page_url;
+echo "haha=" . $shop_page_url;
 ?>
 <html>
 
