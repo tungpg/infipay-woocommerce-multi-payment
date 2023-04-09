@@ -98,17 +98,15 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             }, 50);
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
-            jQuery('#imessage').text(asyncIntentUrl);
-            $.post("https://shop1.infitestshop.cyou/icheckout/?infipay-awx-make-payment=1",
-            	    {
-            	      name: "Donald Duck",
-            	      city: "Duckburg"
-            	    },
-            	    function(data,status){
-            	      alert("Data: " + data + "\nStatus: " + status);
-            	    });
-    	    /*
-            
+            //jQuery('#imessage').text(asyncIntentUrl);
+//             $.post(asyncIntentUrl,
+//             	    {
+//             	      name: "Donald Duck",
+//             	      city: "Duckburg"
+//             	    },
+//             	    function(data,status){
+//             	      alert("Data: " + data + "\nStatus: " + status);
+//             	    });
             if (orderId) {
                 asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
             }
@@ -162,7 +160,6 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                     // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
                 })
             });
-*/
         }
 
 	    // Listen event from client site
