@@ -17,7 +17,7 @@ class InfipayAirwallexCardClient extends CardClient
                 'wp_order_id' => $dataPayment['payment_id'],
             ],
             'merchant_order_id' => $dataPayment['payment_id'],
-            'return_url' => WC()->api_request_url('airwallex_payment_process'),//WC()->api_request_url(Main::ROUTE_SLUG_CONFIRMATION),
+            'return_url' => "$infipay_checkout_page_url?infipay-awx-confirm-payment=1",
             'order' => [
                 'type' => 'physical_goods',
             ],

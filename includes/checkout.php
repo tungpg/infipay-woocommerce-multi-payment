@@ -70,6 +70,8 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-split-card-form.php';
 	} elseif (isset($_GET['infipay-awx-make-payment'])) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-process.php';
+	} elseif (isset($_GET['infipay-awx-confirm-payment'])) {
+	    include dirname( __FILE__ ) . '/awx-form/awx-confirm-payment.php';	    
 	    
 	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';
