@@ -98,6 +98,17 @@ $shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
             }, 50);
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
+
+            $.post(asyncIntentUrl,
+            	    {
+            	      name: "Donald Duck",
+            	      city: "Duckburg"
+            	    },
+            	    function(data,status){
+            	      alert("Data: " + data + "\nStatus: " + status);
+            	    });
+    	    /*
+            
             if (orderId) {
                 asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
             }
@@ -151,7 +162,7 @@ $shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
                     // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
                 })
             });
-
+*/
         }
 
 	    // Listen event from client site
