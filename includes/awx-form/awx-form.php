@@ -99,14 +99,14 @@ $shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
             jQuery('#imessage').text(asyncIntentUrl);
-//             $.post(asyncIntentUrl,
-//             	    {
-//             	      name: "Donald Duck",
-//             	      city: "Duckburg"
-//             	    },
-//             	    function(data,status){
-//             	      alert("Data: " + data + "\nStatus: " + status);
-//             	    });
+            $.post(asyncIntentUrl,
+            	    {
+            	      name: "Donald Duck",
+            	      city: "Duckburg"
+            	    },
+            	    function(data,status){
+            	      alert("Data: " + data + "\nStatus: " + status);
+            	    });
     	    /*
             
             if (orderId) {
