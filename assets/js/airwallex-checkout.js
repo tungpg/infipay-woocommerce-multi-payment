@@ -77,6 +77,7 @@ const AirwallexClient = {
             }
         };
         xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         // xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xmlhttp.send(formData);
     },

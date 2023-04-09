@@ -107,18 +107,17 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 //             	    function(data,status){
 //             	      alert("Data: " + data + "\nStatus: " + status);
 //             	    });
-$.ajax({
-    type: "POST",
-    url: asyncIntentUrl,
-    dataType:"jsonp",
-    success: function(response){
-        //if request if made successfully then the response represent the data
+// $.ajax({
+//     type: "POST",
+//     url: asyncIntentUrl,
+//     dataType:"jsonp",
+//     success: function(response){
+//         //if request if made successfully then the response represent the data
 
-        $( "#imessage" ).empty().append( response );
-    }
-  });
+//         $( "#imessage" ).empty().append( response );
+//     }
+//   });
 
-/*
             if (orderId) {
                 asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
             }
@@ -172,7 +171,6 @@ $.ajax({
                     // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
                 })
             });
-*/            
         }
 
 	    // Listen event from client site
