@@ -12,9 +12,6 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
 	<div id="airwallex-card"></div>
 	<div id="imessage"></div>
-	<script type='text/javascript'
-		src='https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js'
-		id='jquery-blockui-js'></script>
 	<script
 		src='https://checkout.airwallex.com/assets/elements.bundle.min.js?ver=6.0.3'
 		id='airwallex-lib-js-js'></script>
