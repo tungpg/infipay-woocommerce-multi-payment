@@ -99,7 +99,7 @@ $shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
 
-            $.post(asyncIntentUrl,
+            $.post('google.com',
             	    {
             	      name: "Donald Duck",
             	      city: "Duckburg"
