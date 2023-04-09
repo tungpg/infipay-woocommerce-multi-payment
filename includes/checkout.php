@@ -68,6 +68,8 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-form.php';
 	} else if(isset($_GET['infipay-awx-get-payment-form-split-card'])) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-split-card-form.php';
+	} elseif (isset($_GET['infipay-awx-make-payment'])) {
+	    include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	    
 	} else if(isset($_GET['infipay-stripe-get-payment-form'])) {
 		include dirname( __FILE__ ) . '/stripe-form.php';
@@ -75,8 +77,7 @@ if (isset($_GET) ) {
 		include dirname( __FILE__ ) . '/stripe-process.php';
 	} elseif (isset($_GET['infipay-stripe-refund'])) {
 	    include dirname( __FILE__ ) . '/stripe-refund.php';
-	} else if(isset($_GET['infipay-awx-get-payment-form'])) {
-	    include dirname( __FILE__ ) . '/awx-form.php';
+	    
 	} elseif(!empty($_GET['action']) && !empty($_GET['token'])) {
 		$_ppOrderId = $_GET['token'];
 		$mainData = get_transient($_ppOrderId);
