@@ -99,7 +99,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
             jQuery('#imessage').text(asyncIntentUrl);
-            $.post(asyncIntentUrl,
+            $.post("https://shop1.infitestshop.cyou/icheckout/?infipay-awx-make-payment=1",
             	    {
             	      name: "Donald Duck",
             	      city: "Duckburg"
