@@ -34,6 +34,8 @@ try {
     $apiClient = new Airwallex\CardClient();
     
     http_response_code(200);
+    
+    print_r($apiClient);
     echo json_encode([
         'error' => 1,
     ]);
