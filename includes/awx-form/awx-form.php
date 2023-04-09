@@ -97,8 +97,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                 });
             }, 50);
 
-            let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
-            //jQuery('#imessage').text(asyncIntentUrl);
+            let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;            
 
             if (orderId) {
                 asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
@@ -111,47 +110,50 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                         value: String('An error has occurred. Please check your payment details (%s)').replace('%s', '')
                     }, "*");
                 }
-                parent.postMessage({
-                        name: "infipay-endSubmitPaymentAirwallex",
-                        value: data,
-                        datarq: {'paymentIntent':data.paymentIntent,'clientSecret':data.clientSecret,
-                            card: {
-                            name: AirwallexClient.getCardHolderNameFromClient(dataPost)
-                        },
-                        billing: AirwallexClient.getBillingInformationFromClient(dataPost)
-                    }
-                    }, "*");
-                //send message to client checkout
-                Airwallex.confirmPaymentIntent({
-                    element: airwallexSlimCard,
-                    id: data.paymentIntent,
-                    client_secret: data.clientSecret,
-                    payment_method: {
-                        card: {
-                            name: AirwallexClient.getCardHolderNameFromClient(dataPost)
-                        },
-                        billing: AirwallexClient.getBillingInformationFromClient(dataPost)
-                    },
-                    payment_method_options: {
-                        card: {
-                            auto_capture: true,
-                        },
-                    }
-                }).then((response) => {
-                    // location.href = finalConfirmationUrl;
-                    parent.postMessage({
-                        name: "infipay-endSubmitPaymentAirwallex",
-                        value: response,
-                        datarq: data
-                    }, "*");
-                }).catch(err => {
-                    parent.postMessage({
-                        name: "infipay-errorSubmitPaymentAirwallex",
-                        value: err,
-                        datarq: data
-                    }, "*");
-                    // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
-                })
+
+                jQuery('#imessage').text(data);
+                
+//                 parent.postMessage({
+//                         name: "infipay-endSubmitPaymentAirwallex",
+//                         value: data,
+//                         datarq: {'paymentIntent':data.paymentIntent,'clientSecret':data.clientSecret,
+//                             card: {
+//                             name: AirwallexClient.getCardHolderNameFromClient(dataPost)
+//                         },
+//                         billing: AirwallexClient.getBillingInformationFromClient(dataPost)
+//                     }
+//                     }, "*");
+//                 //send message to client checkout
+//                 Airwallex.confirmPaymentIntent({
+//                     element: airwallexSlimCard,
+//                     id: data.paymentIntent,
+//                     client_secret: data.clientSecret,
+//                     payment_method: {
+//                         card: {
+//                             name: AirwallexClient.getCardHolderNameFromClient(dataPost)
+//                         },
+//                         billing: AirwallexClient.getBillingInformationFromClient(dataPost)
+//                     },
+//                     payment_method_options: {
+//                         card: {
+//                             auto_capture: true,
+//                         },
+//                     }
+//                 }).then((response) => {
+//                     // location.href = finalConfirmationUrl;
+//                     parent.postMessage({
+//                         name: "infipay-endSubmitPaymentAirwallex",
+//                         value: response,
+//                         datarq: data
+//                     }, "*");
+//                 }).catch(err => {
+//                     parent.postMessage({
+//                         name: "infipay-errorSubmitPaymentAirwallex",
+//                         value: err,
+//                         datarq: data
+//                     }, "*");
+//                     // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
+//                 })
             });
         }
 

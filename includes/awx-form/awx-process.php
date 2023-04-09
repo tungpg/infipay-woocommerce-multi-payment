@@ -41,7 +41,7 @@ try {
     $airwallexCustomerId = null;
     $paymentIntent = $apiClient->createPaymentIntentExt($paymentProcess);
     
-    echo json_encode($paymentIntent);
+    echo json_encode($data);
     die();
     
     WC()->session->set('airwallex_payment_intent_id', $paymentIntent->getId());
