@@ -98,7 +98,7 @@ $shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
             }, 50);
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
-
+            jQuery('#imessage').text(asyncIntentUrl);
 //             $.post(asyncIntentUrl,
 //             	    {
 //             	      name: "Donald Duck",
