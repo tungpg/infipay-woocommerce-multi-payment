@@ -64,7 +64,7 @@ try {
 } catch (Exception $e) {
     // $logService->error('async intent controller action failed', $e->getMessage());
     echo json_encode([
-        'error' => 1,
+        'error' => $e->getMessage(),
     ]);
     die;
 }
