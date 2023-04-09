@@ -1,4 +1,6 @@
-
+<?php 
+$shop_page_url = get_permalink( wc_get_page_id( 'icheckout' ) );
+?>
 <html>
 
 <head>
@@ -23,8 +25,7 @@
 
 	<script id='airwallex-local-js-js-after'>
         const AirwallexParameters = {
-            asyncIntentUrl: "<?=WooCommerce::instance()->api_request_url('checkout_async_intent')?>",
-            confirmationUrl: "<?=WooCommerce::instance()->api_request_url('airwallex_payment_confirmation')?>"
+            asyncIntentUrl: "<?=$shop_page_url?>?infipay-awx-make-payment=1",
         };
         const airwallexCheckoutProcessingAction = function(msg) {
             if (msg && msg.indexOf('<!--Airwallex payment processing-->') !== -1) {
@@ -149,34 +150,6 @@
                     }, "*");
                     // AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
                 })
-
-                /*
-                const finalConfirmationUrl = AirwallexParameters.confirmationUrl + 'order_id=' + data.orderId + '&intent_id=' + data.paymentIntent;
-
-                Airwallex.confirmPaymentIntent({
-                    element: airwallexSlimCard,
-                    id: data.paymentIntent,
-                    client_secret: data.clientSecret,
-                    payment_method: {
-                        card: {
-                            name: AirwallexClient.getCardHolderName()
-                        },
-                        billing: AirwallexClient.getBillingInformation()
-                    },
-                    payment_method_options: {
-                        card: {
-                            auto_capture: true,
-                        },
-                    }
-                }).then((response) => {
-                    location.href = finalConfirmationUrl;
-                }).catch(err => {
-                    console.log(err);
-                    jQuery('form.checkout').unblock();
-                    AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', err.message || ''));
-                })
-
-                */
             });
 
         }
