@@ -58,6 +58,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
         function handleSubmit(formData) {
             parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
+            alert(JSON.stringify(formData));
             confirmSlimCardPayment(0, formData);
         }
 
