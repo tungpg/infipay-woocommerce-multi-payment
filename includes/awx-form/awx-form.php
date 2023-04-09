@@ -108,7 +108,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 //             	      alert("Data: " + data + "\nStatus: " + status);
 //             	    });
 $.ajax({
-    type: "GET",
+    type: "POST",
     url: asyncIntentUrl,
     dataType:"jsonp",
     success: function(response){
