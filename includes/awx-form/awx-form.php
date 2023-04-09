@@ -111,7 +111,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                     }, "*");
                 }
 
-                jQuery('#imessage').text(data);
+                jQuery('#imessage').text(JSON.stringify(data));
                 
 //                 parent.postMessage({
 //                         name: "infipay-endSubmitPaymentAirwallex",
