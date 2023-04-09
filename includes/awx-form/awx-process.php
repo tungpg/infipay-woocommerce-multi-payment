@@ -30,6 +30,8 @@ try {
         'noteorder' => null,
         'statuspayment' => isset($_POST['statuspayment']) ? $_POST['statuspayment'] : null,
     );
+    echo json_encode($data);
+    die();
     
     $apiClient = new \InfipayAirwallexCardClient();
     
@@ -41,8 +43,6 @@ try {
     $airwallexCustomerId = null;
     $paymentIntent = $apiClient->createPaymentIntentExt($paymentProcess);
     
-    echo json_encode($data);
-    die();
     
     WC()->session->set('airwallex_payment_intent_id', $paymentIntent->getId());
     
