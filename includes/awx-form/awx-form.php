@@ -25,7 +25,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
 	<script id='airwallex-local-js-js-after'>
         const AirwallexParameters = {
-            asyncIntentUrl: "/icheckout/?infipay-awx-make-paymentx=1",
+            asyncIntentUrl: "/icheckout/?infipay-awx-make-payment=1",
         };
         const airwallexCheckoutProcessingAction = function(msg) {
             if (msg && msg.indexOf('<!--Airwallex payment processing-->') !== -1) {
