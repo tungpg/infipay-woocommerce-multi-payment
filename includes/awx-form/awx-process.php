@@ -1,4 +1,7 @@
 <?php
 use Airwallex\CardClient;
 
-echo "HAHAHA111";
+echo json_encode([
+    'error' => 1,
+]);
+die;
