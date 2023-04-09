@@ -1,9 +1,6 @@
 <?php
 require(dirname(__FILE__) . "/InfipayAirwallexCardClient.php");
 
-header('Content-Type: application/json');
-http_response_code(200);
-
 try {
     
     $data = array(
@@ -30,6 +27,10 @@ try {
         'noteorder' => null,
         'statuspayment' => isset($_POST['statuspayment']) ? $_POST['statuspayment'] : null,
     );
+    
+    
+    header('Content-Type: application/json');
+    http_response_code(200);
     echo json_encode($data);
     die();
     
@@ -63,6 +64,8 @@ try {
     die;
 } catch (Exception $e) {
     // $logService->error('async intent controller action failed', $e->getMessage());
+    header('Content-Type: application/json');
+    http_response_code(200);
     echo json_encode([
         'error' => $e->getMessage(),
     ]);
