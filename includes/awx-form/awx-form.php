@@ -99,24 +99,6 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;
             //jQuery('#imessage').text(asyncIntentUrl);
-//             $.post(asyncIntentUrl,
-//             	    {
-//             	      name: "Donald Duck",
-//             	      city: "Duckburg"
-//             	    },
-//             	    function(data,status){
-//             	      alert("Data: " + data + "\nStatus: " + status);
-//             	    });
-// $.ajax({
-//     type: "POST",
-//     url: asyncIntentUrl,
-//     dataType:"jsonp",
-//     success: function(response){
-//         //if request if made successfully then the response represent the data
-
-//         $( "#imessage" ).empty().append( response );
-//     }
-//   });
 
             if (orderId) {
                 asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
