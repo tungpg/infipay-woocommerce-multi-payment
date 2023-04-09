@@ -1,5 +1,5 @@
 <?php
-use InfipayAirwallexCardClient; // Object from Airwallex Woocommerce Official Plugin
+require(dirname(__FILE__) . "/InfipayAirwallexCardClient.php");
 
 header('Content-Type: application/json');
 http_response_code(200);
@@ -31,12 +31,10 @@ try {
         'statuspayment' => isset($_POST['statuspayment']) ? $_POST['statuspayment'] : null,
     );
     
-    $apiClient = new InfipayAirwallexCardClient();
+    $apiClient = new \InfipayAirwallexCardClient();
     
     print_r($apiClient);
     
-    header('Content-Type: application/json');
-    http_response_code(200);
     die();
     
     $gateway = new Airwallex\Gateways\Card();
@@ -62,7 +60,6 @@ try {
     die;
 } catch (Exception $e) {
     // $logService->error('async intent controller action failed', $e->getMessage());
-    http_response_code(200);
     echo json_encode([
         'error' => 1,
     ]);
