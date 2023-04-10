@@ -70,28 +70,28 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-split-card-form.php';
 	} elseif (isset($_GET['infipay-awx-make-payment'])) {
 	    $data = array(
-	        'payment_order_id'    => isset($postData['payment_order_id']) ? $postData['payment_order_id'] : null,
-	        'clientname'    => isset($postData['clientname']) ? $postData['clientname'] : null,
-	        'payment_code' => isset($postData['payment_code']) ? $postData['payment_code'] : null,
+	        'payment_order_id'    => isset($_POST['payment_order_id']) ? $_POST['payment_order_id'] : null,
+	        'clientname'    => isset($_POST['clientname']) ? $_POST['clientname'] : null,
+	        'payment_code' => isset($_POST['payment_code']) ? $_POST['payment_code'] : null,
 	        
-	        'fname' => isset($postData['first_name']) ? $postData['first_name'] : null,
-	        'lname' => isset($postData['last_name']) ? $postData['last_name'] : null,
-	        'country' => isset($postData['country']) ? $postData['country'] : null,
-	        'address' => isset($postData['line1']) ? $postData['line1'] : null,
-	        'city' => isset($postData['city']) ? $postData['city'] : null,
-	        'state' => isset($postData['state']) ? $postData['state'] : null,
-	        'zipcode' => isset($postData['postal_code']) ? $postData['postal_code'] : null,
-	        'phone' => isset($postData['phone']) ? $postData['phone'] : null,
-	        'email' => isset($postData['email']) ? $postData['email'] : null,
+	        'fname' => isset($_POST['first_name']) ? $_POST['first_name'] : null,
+	        'lname' => isset($_POST['last_name']) ? $_POST['last_name'] : null,
+	        'country' => isset($_POST['country']) ? $_POST['country'] : null,
+	        'address' => isset($_POST['line1']) ? $_POST['line1'] : null,
+	        'city' => isset($_POST['city']) ? $_POST['city'] : null,
+	        'state' => isset($_POST['state']) ? $_POST['state'] : null,
+	        'zipcode' => isset($_POST['postal_code']) ? $_POST['postal_code'] : null,
+	        'phone' => isset($_POST['phone']) ? $_POST['phone'] : null,
+	        'email' => isset($_POST['email']) ? $_POST['email'] : null,
 	        
-	        'totalprice' => isset($postData['totalprice']) ? $postData['totalprice'] : null,
-	        'pagecheckout' => isset($postData['pagecheckout']) ? $postData['pagecheckout'] : null,
-	        'pagethankyou' => isset($postData['pagethankyou']) ? $postData['pagethankyou'] : null,
+	        'totalprice' => isset($_POST['totalprice']) ? $_POST['totalprice'] : null,
+	        'pagecheckout' => isset($_POST['pagecheckout']) ? $_POST['pagecheckout'] : null,
+	        'pagethankyou' => isset($_POST['pagethankyou']) ? $_POST['pagethankyou'] : null,
 	        
 	        'airwallex_consent_id' => null,
 	        'airwallex_customer_id' => null,
 	        'noteorder' => null,
-	        'statuspayment' => isset($postData['statuspayment']) ? $postData['statuspayment'] : null,
+	        'statuspayment' => isset($_POST['statuspayment']) ? $_POST['statuspayment'] : null,
 	    );
 	    header('Content-Type: application/json');
 	    http_response_code(200);
