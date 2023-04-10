@@ -58,7 +58,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
         function handleSubmit(formData) {
             parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
-            confirmSlimCardPayment(0, formData);
+            confirmSlimCardPayment(formData);
         }
 
 
@@ -85,7 +85,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             }
         }, 1000);
 
-        function confirmSlimCardPayment(orderId, formData) {
+        function confirmSlimCardPayment(formData) {
             //timeout necessary because of event order in plugin CheckoutWC
             setTimeout(function() {
                 jQuery('form.checkout').block({
@@ -98,10 +98,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             }, 50);
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;            
-
-            if (orderId) {
-                asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
-            }
+            
             var dataPost = formData.billing_details;
             AirwallexClient.ajaxPost(asyncIntentUrl, dataPost, function(data) {
                 if (!data || data.error) {
