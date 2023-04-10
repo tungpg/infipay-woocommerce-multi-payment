@@ -64,9 +64,10 @@ const AirwallexClient = {
             url: url,
             data: datapost,
             type: 'post',
-            dataType: 'json',
+            //dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
+				alert(JSON.stringify(data));
 				callback(data);
                 $('#target').html(data.msg);
             }
