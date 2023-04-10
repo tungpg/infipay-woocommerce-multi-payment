@@ -60,8 +60,8 @@ const AirwallexClient = {
         xmlhttp.send();
     },
     ajaxPost: function (url, datapost, callback) {
-        alert(JSON.stringify(datapost));
-/*
+/*        alert(JSON.stringify(datapost));
+
 		$.ajax({
             url: url,
             data: datapost,
