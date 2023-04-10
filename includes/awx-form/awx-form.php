@@ -103,7 +103,6 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                 asyncIntentUrl += (asyncIntentUrl.indexOf('?') !== -1 ? '&' : '?') + 'airwallexOrderId=' + orderId;
             }
             var dataPost = formData.billing_details;
-            alert(JSON.stringify(formData));
             AirwallexClient.ajaxPost(asyncIntentUrl, dataPost, function(data) {
                 if (!data || data.error) {
                     parent.postMessage({
