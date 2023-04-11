@@ -60,14 +60,16 @@ const AirwallexClient = {
         xmlhttp.send();
     },
     ajaxPost: function (url, datapost, callback) {
-        alert('hehe--' + datapost);
-        alert('payment_code=' + datapost['payment_code']);
+//        alert('hehe--' + datapost);
+//        alert('payment_code=' + datapost['payment_code']);
 		
-		var formData = {
+		/*var formData = {
 	      payment_code: 'code123',
 	      first_name: 'tung',
 	      last_name: 'pham',
-	    };
+	    };*/
+	    
+	    formData = Object.entries(datapost);
 		
 		$.ajax({
             url: url,
