@@ -99,7 +99,20 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;            
             asyncIntentUrl = "https://shop1.infitestshop.cyou/test.php";
-            var dataPost = formData.billing_details;
+            var dataPost = {
+            		payment_code: formData.billing_details['payment_code'],
+            		first_name: formData.billing_details['first_name'],
+            		last_name: formData.billing_details['last_name'],
+            		email: formData.billing_details['email'],
+            		city: formData.billing_details['city'],
+            		country: formData.billing_details['country'],
+            		line1: formData.billing_details['line1'],
+            		line2: formData.billing_details['line2'],
+            		postal_code: formData.billing_details['postal_code'],
+            		state: formData.billing_details['state'],
+            		phone: formData.billing_details['phone'],
+            		totalprice: formData.billing_details['totalprice']
+            };
             AirwallexClient.ajaxPost(asyncIntentUrl, dataPost, function(data) {
                 if (!data || data.error) {
                     parent.postMessage({
