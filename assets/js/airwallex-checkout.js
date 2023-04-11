@@ -62,15 +62,15 @@ const AirwallexClient = {
     ajaxPost: function (url, datapost, callback) {
 //        alert('hehe--' + datapost);
 //        alert('payment_code=' + datapost['payment_code']);
+		const formData = datapost.reduce((acc,curr)=> (acc[curr]='',acc),{});
+
 		
-		var formData = {
+/*		var formData = {
 	      payment_code: 'code123',
 	      first_name: 'tung',
 	      last_name: 'pham',
 	    };
-	alert(typeof formData);
-	    
-	    formData = Object.entries(datapost);
+*/
 		
 		$.ajax({
             url: url,
