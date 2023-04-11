@@ -95,7 +95,8 @@ if (isset($_GET) ) {
 	    );
 	    header('Content-Type: application/json');
 	    http_response_code(200);
-	    echo json_encode($data);
+	    echo "ABC";
+	    //echo json_encode($data);
 	    die();
 	    //include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	} elseif (isset($_GET['infipay-awx-confirm-payment'])) {
