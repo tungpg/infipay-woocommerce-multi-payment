@@ -60,7 +60,7 @@ const AirwallexClient = {
         xmlhttp.send();
     },
     ajaxPost: function (url, datapost, callback) {
-        alert('hehe--' + JSON.stringify(datapost));
+        alert('hehe--' + datapost);
         alert('payment_code=' + datapost['payment_code']);
 		
 		var formData = {
