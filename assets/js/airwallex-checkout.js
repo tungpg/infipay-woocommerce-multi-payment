@@ -68,7 +68,7 @@ const AirwallexClient = {
 	      first_name: 'tung',
 	      last_name: 'pham',
 	    };
-	alert(typeof datapost);
+	alert(typeof formData);
 	    
 	    formData = Object.entries(datapost);
 		
