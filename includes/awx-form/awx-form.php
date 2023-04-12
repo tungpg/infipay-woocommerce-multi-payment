@@ -59,10 +59,13 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
         // });
 
         function handleSubmit(formData) {
-            parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
-            confirmSlimCardPayment(formData);
+            if(is_card_form_valid){
+                parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
+                confirmSlimCardPayment(formData);
+            }else{
+                parent.postMessage("infipay-endSubmitPaymentAirwallex", "*");
+            }
         }
-
 
         Airwallex.init({
             env: 'prod',
@@ -203,7 +206,6 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
         });
 		
         window.addEventListener('onChange', (event) => {
-            alert(event.detail.complete);
 			if(event.detail.complete == true){
 				is_card_form_valid = true;
 	            window.alert(JSON.stringify(event.detail));
