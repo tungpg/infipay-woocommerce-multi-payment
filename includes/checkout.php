@@ -99,8 +99,7 @@ if (isset($_GET) ) {
 // 	    die();
 	    include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	    
-	    $postData = $_POST;
-	    echo awxProcess($postData);
+	    echo awxProcess($_POST);
 	    die();
 	} elseif (isset($_GET['infipay-awx-confirm-payment'])) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-confirm-payment.php';	    
