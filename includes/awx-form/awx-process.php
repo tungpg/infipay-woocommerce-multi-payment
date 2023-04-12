@@ -3,35 +3,8 @@ require(dirname(__FILE__) . "/InfipayAirwallexCardClient.php");
 // $content = file_get_contents('php://input');
 // $postData = json_decode($content, true);
 
-function awxProcess($postData){
+function awxProcess($data){
     try {
-        
-        $data = array(
-            '3payment_order_id'    => isset($postData['payment_order_id']) ? $postData['payment_order_id'] : null,
-            'clientname'    => isset($postData['clientname']) ? $postData['clientname'] : null,
-            'payment_code' => isset($postData['payment_code']) ? $postData['payment_code'] : null,
-            
-            'fname' => isset($postData['first_name']) ? $postData['first_name'] : null,
-            'lname' => isset($postData['last_name']) ? $postData['last_name'] : null,
-            'country' => isset($postData['country']) ? $postData['country'] : null,
-            'address' => isset($postData['line1']) ? $postData['line1'] : null,
-            'city' => isset($postData['city']) ? $postData['city'] : null,
-            'state' => isset($postData['state']) ? $postData['state'] : null,
-            'zipcode' => isset($postData['postal_code']) ? $postData['postal_code'] : null,
-            'phone' => isset($postData['phone']) ? $postData['phone'] : null,
-            'email' => isset($postData['email']) ? $postData['email'] : null,
-            
-            'totalprice' => isset($postData['totalprice']) ? $postData['totalprice'] : null,
-            'pagecheckout' => isset($postData['pagecheckout']) ? $postData['pagecheckout'] : null,
-            'pagethankyou' => isset($postData['pagethankyou']) ? $postData['pagethankyou'] : null,
-            
-            'airwallex_consent_id' => null,
-            'airwallex_customer_id' => null,
-            'noteorder' => null,
-            'statuspayment' => isset($postData['statuspayment']) ? $postData['statuspayment'] : null,
-        );
-        
-        
         header('Content-Type: application/json');
         http_response_code(200);
         return json_encode($data);
