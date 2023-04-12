@@ -201,9 +201,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
         });
     </script>
 
-    <script
-    	src="<?php echo esc_url(plugin_dir_url(__DIR__))?>../assets/js/airwallex-checkout.js?a=<?php echo time();?>"
-    	id='airwallex-local-js-js'></script>
+    <script src="<?php echo esc_url(plugin_dir_url(__DIR__))?>../assets/js/airwallex-checkout.js?v=<?php echo time();?>" id='airwallex-local-js-js'></script>
 </body>
 
 </html>
