@@ -209,7 +209,9 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 			if(event.detail.complete == true){
 				is_card_form_valid = true;
 	            window.alert(JSON.stringify(event.detail));
-			}            
+			}else{
+				is_card_form_valid = false;
+			}
     	});
     </script>
 
