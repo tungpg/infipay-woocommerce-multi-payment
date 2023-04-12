@@ -1,12 +1,12 @@
 <?php
 require(dirname(__FILE__) . "/InfipayAirwallexCardClient.php");
-// $content = file_get_contents('php://input');
-// $postData = json_decode($content, true);
+$content = file_get_contents('php://input');
+$postData = json_decode($content, true);
 
 try {
     
     $data = array(
-        'payment_order_id'    => isset($postData['payment_order_id']) ? $postData['payment_order_id'] : null,
+        '2payment_order_id'    => isset($postData['payment_order_id']) ? $postData['payment_order_id'] : null,
         'clientname'    => isset($postData['clientname']) ? $postData['clientname'] : null,
         'payment_code' => isset($postData['payment_code']) ? $postData['payment_code'] : null,
         
