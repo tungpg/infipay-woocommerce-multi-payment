@@ -8,13 +8,12 @@ function awxProcess($data){
         
         $apiClient = new \InfipayAirwallexCardClient();
         
-        $paymentProcess = $dataPayment;
-        $paymentProcess['payment_id'] = time();
+        $dataPayment['payment_id'] = time();
         
         $gateway = new Airwallex\Gateways\Card();
         $orderService = new Airwallex\Services\OrderService();
         $airwallexCustomerId = null;
-        $paymentIntent = $apiClient->createPaymentIntentExt($paymentProcess);
+        $paymentIntent = $apiClient->createPaymentIntentExt($dataPayment);
         
         
         WC()->session->set('airwallex_payment_intent_id', $paymentIntent->getId());

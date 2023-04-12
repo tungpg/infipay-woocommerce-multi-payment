@@ -199,6 +199,13 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             
             parent.postMessage('infipay-loadedPaymentFormAirwallex', '*')
         });
+		
+        window.addEventListener('onChange', (event) => {
+            /*
+            ... Handle event
+            */
+            window.alert(event.detail);
+    	});
     </script>
 
     <script src="<?php echo esc_url(plugin_dir_url(__DIR__))?>../assets/js/airwallex-checkout.js?v=<?php echo time();?>" id='airwallex-local-js-js'></script>
