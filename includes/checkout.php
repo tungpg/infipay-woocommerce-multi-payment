@@ -97,9 +97,9 @@ if (isset($_GET) ) {
 // 	    http_response_code(200);
 // 	    echo json_encode($data);
 // 	    die();
-	    $postData = $_POST;
 	    include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	    
+	    $postData = $_POST;
 	    echo awxProcess($postData);
 	    die();
 	} elseif (isset($_GET['infipay-awx-confirm-payment'])) {
