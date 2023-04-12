@@ -204,7 +204,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             /*
             ... Handle event
             */
-            window.alert(event.detail);
+            window.alert(JSON.stringify(event.detail));
     	});
     </script>
 
