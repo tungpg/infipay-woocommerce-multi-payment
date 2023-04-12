@@ -70,9 +70,9 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-split-card-form.php';
 	} elseif (isset($_GET['infipay-awx-make-payment'])) {
 	    $data = array(
-	        'payment_order_id'    => isset($_POST['payment_order_id']) ? $_POST['payment_order_id'] : null,
-	        'clientname'    => isset($_POST['clientname']) ? $_POST['clientname'] : null,
-	        'payment_code' => isset($_POST['payment_code']) ? $_POST['payment_code'] : null,
+	        //'payment_order_id'    => isset($_POST['payment_order_id']) ? $_POST['payment_order_id'] : null,
+	        //'clientname'    => isset($_POST['clientname']) ? $_POST['clientname'] : null,
+	        '1payment_code' => isset($_POST['payment_code']) ? $_POST['payment_code'] : null,
 	        
 	        'fname' => isset($_POST['first_name']) ? $_POST['first_name'] : null,
 	        'lname' => isset($_POST['last_name']) ? $_POST['last_name'] : null,
@@ -95,8 +95,7 @@ if (isset($_GET) ) {
 	    );
 	    header('Content-Type: application/json');
 	    http_response_code(200);
-	    echo "ABC";
-	    //echo json_encode($data);
+	    echo json_encode($data);
 	    die();
 	    //include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	} elseif (isset($_GET['infipay-awx-confirm-payment'])) {
