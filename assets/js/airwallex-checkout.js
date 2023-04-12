@@ -60,7 +60,6 @@ const AirwallexClient = {
         xmlhttp.send();
     },
     ajaxPost: function (url, datapost, callback) {
-	/*
 		$.ajax({
             url: url,
             data: datapost,
@@ -73,10 +72,9 @@ const AirwallexClient = {
                 $('#target').html(data.msg);
             }
         });
-        */
 
 
-        const formData = new FormData();
+/*        const formData = new FormData();
         Object.keys(datapost).forEach(key => formData.append(key, datapost[key]));
 
         const xmlhttp = new XMLHttpRequest();
@@ -94,7 +92,7 @@ const AirwallexClient = {
         xmlhttp.open("POST", url, true);
         //xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xmlhttp.send(formData);
+        xmlhttp.send(formData);*/
     },
     displayCheckoutError: function (msg) {
         const checkout_form = jQuery('form.checkout');
