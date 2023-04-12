@@ -192,7 +192,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             const {
                 error
             } = event.detail;
-            AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details (%s)').replace('%s', error.message || ''));
+            AirwallexClient.displayCheckoutError(String('An error has occurred. Please check your payment details x(%s)').replace('%s', error.message || ''));
         });
         window.addEventListener('onReady', (event) => {
             if (!event.detail) {
