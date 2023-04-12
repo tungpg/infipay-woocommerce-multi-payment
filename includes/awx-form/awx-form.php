@@ -24,6 +24,8 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 		id='airwallex-lib-js-js'></script>
 
 	<script id='airwallex-local-js-js-after'>
+		var is_card_form_valid = false;
+	
         const AirwallexParameters = {
             asyncIntentUrl: "<?php echo $infipay_checkout_page_url;?>?infipay-awx-make-payment=1",
         };
@@ -201,10 +203,11 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
         });
 		
         window.addEventListener('onChange', (event) => {
-            /*
-            ... Handle event
-            */
-            window.alert(JSON.stringify(event.detail));
+            alert(event.detail.complete);
+			if(event.detail.complete == true){
+				is_card_form_valid = true;
+	            window.alert(JSON.stringify(event.detail));
+			}            
     	});
     </script>
 
