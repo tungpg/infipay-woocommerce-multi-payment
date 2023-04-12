@@ -1,6 +1,6 @@
 <?php
 require(dirname(__FILE__) . "/InfipayAirwallexCardClient.php");
-// $content = file_get_contents('php://input');
+ $content = file_get_contents('php://input');
 // $_POST = json_decode($content, true);
 
 try {
@@ -33,7 +33,8 @@ try {
     
     header('Content-Type: application/json');
     http_response_code(200);
-    echo json_encode($data);
+    echo $content;
+    //echo json_encode($data);
     die();
     
     $apiClient = new \InfipayAirwallexCardClient();
