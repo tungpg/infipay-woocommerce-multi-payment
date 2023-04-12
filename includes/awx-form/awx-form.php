@@ -122,7 +122,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                 if (!data || data.error) {
                     parent.postMessage({
                         name: "infipay-errorSubmitPaymentAirwallex",
-                        value: String('An error has occurred. sPlease check your payment details (%s)').replace('%s', '')
+                        value: String('An error has occurred. Please check your payment details (%s)').replace('%s', data.error)
                     }, "*");
                 }
 
