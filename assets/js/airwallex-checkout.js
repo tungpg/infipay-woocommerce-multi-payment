@@ -67,9 +67,7 @@ const AirwallexClient = {
             dataType: 'json',
             encode: true,
             success: function (data) {
-				alert(JSON.stringify(data));
 				callback(data);
-                $('#target').html(data.msg);
             }
         });
 
