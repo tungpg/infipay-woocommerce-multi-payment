@@ -96,7 +96,7 @@ class InfipayAirwallexCardClient extends CardClient
             $this->getPciUrl('pa/payment_intents/create'),
             json_encode(
                 $data
-                //+ $this->getReferrer()
+                + $this->getReferrer()
                 ),
             [
                 'Authorization' => 'Bearer ' . $this->getToken(),
