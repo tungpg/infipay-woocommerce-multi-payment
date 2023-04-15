@@ -93,7 +93,7 @@ if (isset($_GET) ) {
 	        'noteorder' => null,
 	        'statuspayment' => isset($_POST['statuspayment']) ? $_POST['statuspayment'] : null,
 	    );
-	    echo json_encode($data);die();
+	    
 	    include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	    
 	    echo awxProcess($data);

@@ -3,7 +3,7 @@ require(dirname(__FILE__) . "/InfipayAirwallexCardClient.php");
 header('Content-Type: application/json');
 http_response_code(200);
 
-function awxProcess($data){
+function awxProcess($dataPayment){
     try {
         
         $apiClient = new \InfipayAirwallexCardClient();
@@ -20,7 +20,7 @@ function awxProcess($data){
         
         $response = [
             'paymentIntent' => $paymentIntent->getId(),
-            'orderId' => $data['payment_code'],
+            'orderId' => $dataPayment['payment_code'],
             'createConsent' => !empty($airwallexCustomerId),
             'customerId' => !empty($airwallexCustomerId) ? $airwallexCustomerId : '',
             'currency' => 'USD',
