@@ -1,7 +1,6 @@
 <?php
 use Airwallex\CardClient;
 use Airwallex\Struct\PaymentIntent;
-use Exception;
 
 class InfipayAirwallexCardClient extends CardClient
 {
