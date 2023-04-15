@@ -4,8 +4,8 @@ $eh_paypal = get_option("woocommerce_eh_paypal_express_settings");
 if(is_array($eh_paypal)){
     $client_id = $eh_paypal['smart_button_environment'] == 'sandbox'? $eh_paypal['sandbox_client_id'] : $eh_paypal['live_client_id'];
     $client_secret = $eh_paypal['smart_button_environment'] == 'sandbox'? $eh_paypal['sandbox_client_secret'] : $eh_paypal['live_client_secret'];
+    $REST_API_URL = $eh_paypal['smart_button_environment'] == 'sandbox'? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com';
 }
-$REST_API_URL = $eh_paypal['smart_button_environment'] == 'sandbox'? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com';
 
 $tool_server_url = esc_attr( get_option( 'tool_server_domain' ) );
 
