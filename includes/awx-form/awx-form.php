@@ -27,7 +27,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
 		var is_card_form_valid = false;
 	
         const AirwallexParameters = {
-            asyncIntentUrl: "<?php echo $infipay_checkout_page_url;?>?infipay-awx-make-payment=1",
+            asyncIntentUrl: "<?php echo $infipay_checkout_page_url;?>?infipay-awx-create-payment-intent=1",
         };
         const airwallexCheckoutProcessingAction = function(msg) {
             if (msg && msg.indexOf('<!--Airwallex payment processing-->') !== -1) {
@@ -131,11 +131,15 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
                 parent.postMessage({
                         name: "infipay-paymentIntentIdAirwallex",
                         value: data,
-                        datarq: {'paymentIntent':data.paymentIntent,'clientSecret':data.clientSecret,
-                            card: {
-                            name: AirwallexClient.getCardHolderNameFromClient(dataPost)
-                        },
-                        billing: AirwallexClient.getBillingInformationFromClient(dataPost)
+                        datarq: {
+                            'paymentIntentId':data.paymentIntent,
+                            'paymentConsentId' : data.airwallex_consent_id,
+                            'customerId' : data.airwallex_customer_id,
+//                             'clientSecret':data.clientSecret,
+//                             card: {
+//                             	name: AirwallexClient.getCardHolderNameFromClient(dataPost)
+//                         	},
+// 	                        billing: AirwallexClient.getBillingInformationFromClient(dataPost)
                     }
                     }, "*");
                 //send message to client checkout

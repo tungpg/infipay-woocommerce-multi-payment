@@ -70,7 +70,7 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-form.php';
 	} else if(isset($_GET['infipay-awx-get-payment-form-split-card'])) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-split-card-form.php';
-	} elseif (isset($_GET['infipay-awx-make-payment'])) {
+	} elseif (isset($_GET['infipay-awx-create-payment-intent'])) {
 	    $data = array(
 	        'payment_order_id'    => isset($_POST['payment_order_id']) ? $_POST['payment_order_id'] : null,
 	        'clientname'    => isset($_POST['clientname']) ? $_POST['clientname'] : null,
@@ -98,8 +98,10 @@ if (isset($_GET) ) {
 	    
 	    include dirname( __FILE__ ) . '/awx-form/awx-process.php';
 	    
-	    echo awxProcess($data);
+	    echo awxCreatePaymentIntent($data);
 	    die();
+	} elseif (isset($_GET['infipay-awx-make-payment'])) {
+	    
 	} elseif (isset($_GET['infipay-awx-confirm-payment'])) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-confirm-payment.php';	    
 	    
