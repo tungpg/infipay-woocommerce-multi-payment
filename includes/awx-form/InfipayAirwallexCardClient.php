@@ -15,7 +15,7 @@ class InfipayAirwallexCardClient extends CardClient
             'currency' => 'USD',
             'descriptor' => 'order #'.$dataPayment['payment_id'].'-'.$dataPayment['payment_order_id'] ,
             'metadata' => [
-                'wp_order_id' => $dataPayment['payment_id'],
+                'wp_order_id' => "WC-" . $dataPayment['payment_id'],
             ],
             'merchant_order_id' => $dataPayment['payment_id'],
             'return_url' => "$infipay_checkout_page_url?infipay-awx-confirm-payment=1",
