@@ -13,7 +13,7 @@ class InfipayAirwallexCardClient extends CardClient
         $data = [
             'amount' => $dataPayment['totalprice'],
             'currency' => 'USD',
-            'descriptor' => 'order #'.$dataPayment['payment_id'].'-'.$dataPayment['payment_order_id'] ,
+            'descriptor' => $dataPayment['payment_descriptor'],
             'metadata' => [
                 'wp_order_id' => "WC-" . $dataPayment['payment_id'],
             ],

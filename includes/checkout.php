@@ -72,7 +72,7 @@ if (isset($_GET) ) {
 	    include dirname( __FILE__ ) . '/awx-form/awx-split-card-form.php';
 	} elseif (isset($_GET['infipay-awx-create-payment-intent'])) {
 	    $data = array(
-	        'payment_order_id'    => isset($_POST['payment_order_id']) ? $_POST['payment_order_id'] : null,
+	        'payment_descriptor'    => isset($_POST['payment_descriptor']) ? $_POST['payment_descriptor'] : null,
 	        'clientname'    => isset($_POST['clientname']) ? $_POST['clientname'] : null,
 	        'payment_code' => isset($_POST['payment_code']) ? $_POST['payment_code'] : null,
 	        

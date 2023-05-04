@@ -8,7 +8,9 @@ function awxCreatePaymentIntent($dataPayment){
         
         $apiClient = new \InfipayAirwallexCardClient();
         
-        $dataPayment['payment_id'] = time();
+        $payment_id = $paymentIntent->getId();
+        $payment_id = str_replace("int_", "od_", $payment_id);
+        $dataPayment['payment_id'] = $payment_id;
         
         $gateway = new Airwallex\Gateways\Card();
         $orderService = new Airwallex\Services\OrderService();
