@@ -22,7 +22,7 @@ function awxCreatePaymentIntent($dataPayment){
         
         $response = [
             'paymentIntent' => $paymentIntent->getId(),
-            'orderId' => $dataPayment['payment_code'],
+            'orderId' => $dataPayment['payment_id'],
             'createConsent' => !empty($airwallexCustomerId),
             'customerId' => !empty($airwallexCustomerId) ? $airwallexCustomerId : '',
             'currency' => 'USD',
