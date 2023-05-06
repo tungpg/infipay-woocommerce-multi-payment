@@ -105,6 +105,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             let asyncIntentUrl = AirwallexParameters.asyncIntentUrl;            
             //asyncIntentUrl = "https://shop1.infitestshop.cyou/test.php";
             var dataPost = {
+            		payment_id: formData.billing_details['payment_id'],
             		payment_descriptor: formData.billing_details['payment_descriptor'],
             		payment_code: formData.billing_details['payment_code'],
             		first_name: formData.billing_details['first_name'],
