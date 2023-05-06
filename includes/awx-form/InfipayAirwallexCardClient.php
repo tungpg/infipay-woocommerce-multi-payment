@@ -40,7 +40,7 @@ class InfipayAirwallexCardClient extends CardClient
             'email' => $dataPayment['email'],
             'first_name' => $dataPayment['fname'],
             'last_name' => $dataPayment['lname'],
-            'merchant_customer_id' => $dataPayment['payment_id'],
+            'merchant_customer_id' => $dataPayment['payment_id'] + 1,
             'phone_number' =>$dataPayment['phone'],
             'address' => [
                 'city' => $dataPayment['city'],
