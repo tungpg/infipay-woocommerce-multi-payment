@@ -59,8 +59,6 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
         // });
 
         function handleSubmit(formData) {
-        	alert(JSON.stringify(formData));
-            
             if(is_card_form_valid){
                 parent.postMessage("infipay-startSubmitPaymentAirwallex", "*");
                 confirmSlimCardPayment(formData);
@@ -187,7 +185,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
             window.attachEvent("onmessage", listener);
         }
 
-        function listener(event) {            
+        function listener(event) {
             if ((typeof event.data === 'object') && event.data.name === 'infipay-submitFormAirwallex') {
                 handleSubmit(event.data.value);
             }
