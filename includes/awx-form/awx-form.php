@@ -186,6 +186,7 @@ $infipay_checkout_page_url = get_permalink( get_page_by_path( 'icheckout' ) );
         }
 
         function listener(event) {
+            alert(JSON.stringify(event.data.value));
             if ((typeof event.data === 'object') && event.data.name === 'infipay-submitFormAirwallex') {
                 handleSubmit(event.data.value);
             }
