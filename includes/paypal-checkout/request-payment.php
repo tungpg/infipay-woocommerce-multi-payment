@@ -292,7 +292,7 @@ try {
         foreach($error_data->details as $err_detail){
             $error_message .= "<li>" . $err_detail->field . ": " . $err_detail->issue . "</li>";
         }
-        $error_message = "</ul>";
+        $error_message .= "</ul>";
     }else{
         $error_message = $ex->getMessage();
     }
