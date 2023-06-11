@@ -298,6 +298,7 @@ try {
     }
     
     //$error_message = $ex->getData();
+    $error_message = print_r($error_data, true);
     
     //$error_message .= print_r($ex, true);
     $error_message .= "AAAAAAA" . print_r($shipping_address, true);
