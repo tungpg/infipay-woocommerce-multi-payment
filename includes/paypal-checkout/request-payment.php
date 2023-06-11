@@ -285,7 +285,7 @@ try {
 } catch (PayPal\Exception\PayPalConnectionException $ex) {
     //$error_message = "10736 - A match of the Shipping Address City, State and Postal Code failed.";
     //$error_message = $ex->getMessage();
-    $error_data = $ex->getData();
+    $error_data = (object)$ex->getData();
     
     if($error_data->name == "VALIDATION_ERROR"){
         $error_message = "Invalid data:<ul>";
