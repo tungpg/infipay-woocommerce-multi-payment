@@ -285,8 +285,8 @@ try {
 } catch (PayPal\Exception\PayPalConnectionException $ex) {
     //$error_message = "10736 - A match of the Shipping Address City, State and Postal Code failed.";
     $error_message = $ex->getMessage();
-    print_r($payment);
-    print_r($ex);
+    $error_message .= print_r($ex, true);
+    $error_message .= print_r($payment, true);
     
     echo json_encode([
         'error' => $error_message,
