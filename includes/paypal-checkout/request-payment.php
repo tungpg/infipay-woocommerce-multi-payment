@@ -290,22 +290,14 @@ try {
     if($error_data['name'] == "VALIDATION_ERROR"){
         $error_message = "Invalid data, please check:<ul>";
         foreach($error_data['details'] as $err_detail){
-            //$err_detail = json_decode( $err_detail, true );
             $error_message .= "<li>" . $err_detail['field'] . ": " . $err_detail['issue'] . "</li>";
-//             $error_message .= "<li>" . print_r($err_detail, true) . "</li>";
-//            $error_message .= "<li>" . gettype($err_detail) . "</li>";
         }
         $error_message .= "</ul>";
     }else{
         $error_message = $ex->getMessage();
     }
     
-    //$error_message = $ex->getData();
-    //$error_message = gettype($error_data);
-    
-    //$error_message .= $ex->getData();
-    //$error_message .= print_r($ex, true);
-    $error_message .= "AAAAAAA" . print_r($shipping_address, true);
+    //$error_message .= "AAAAAAA" . print_r($shipping_address, true);
     
     echo json_encode([
         'error' => $error_message,
