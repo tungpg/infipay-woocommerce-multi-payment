@@ -286,7 +286,7 @@ try {
     //$error_message = "10736 - A match of the Shipping Address City, State and Postal Code failed.";
     $error_message = $ex->getMessage();
     $error_message .= print_r($ex, true);
-    $error_message .= print_r($payment, true);
+    $error_message .= "AAAAAAA" . print_r($shipping_address, true);
     
     echo json_encode([
         'error' => $error_message,
