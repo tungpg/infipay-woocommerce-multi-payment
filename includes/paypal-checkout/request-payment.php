@@ -293,7 +293,7 @@ try {
             //$err_detail = json_decode( $err_detail, true );
 //            $error_message .= "<li>" . $err_detail['field'] . ": " . $err_detail['issue'] . "</li>";
 //             $error_message .= "<li>" . print_r($err_detail, true) . "</li>";
-            $error_message .= "<li>" . gettype($err_detail, true) . "</li>";
+            $error_message .= "<li>" . gettype($err_detail) . "</li>";
         }
         $error_message .= "</ul>";
     }else{
