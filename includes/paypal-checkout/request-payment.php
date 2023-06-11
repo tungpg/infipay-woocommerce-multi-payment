@@ -289,9 +289,9 @@ try {
     
     if($error_data['name'] == "VALIDATION_ERROR"){
         $error_message = "Invalid data:<ul>";
-        foreach($error_data->details as $err_detail){
-            $error_message .= "<li>" . $err_detail['field'] . ": " . $err_detail['issue'] . "</li>";
-        }
+//         foreach($error_data->details as $err_detail){
+//             $error_message .= "<li>" . $err_detail['field'] . ": " . $err_detail['issue'] . "</li>";
+//         }
         $error_message .= "</ul>";
     }else{
         $error_message = $ex->getMessage();
