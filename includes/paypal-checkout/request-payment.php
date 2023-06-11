@@ -283,8 +283,8 @@ $payment->setIntent("sale")
 try {
     $payment->create($apiContext);
 } catch (PayPal\Exception\PayPalConnectionException $ex) {
-    $error_message = "10736 - A match of the Shipping Address City, State and Postal Code failed.";
-    $error_message .= " " . $ex->getMessage();
+    //$error_message = "10736 - A match of the Shipping Address City, State and Postal Code failed.";
+    $error_message = $ex->getMessage();
     
     echo json_encode([
         'error' => $error_message,
