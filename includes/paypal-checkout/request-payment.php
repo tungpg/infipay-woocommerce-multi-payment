@@ -311,7 +311,7 @@ try {
 } catch (Exception $ex) {
     echo json_encode([
         'error' => $ex->getMessage(),
-        'show_error_to_buyer' => false,
+        'show_error_to_buyer' => true,
     ]);
     exit(1);
 }
