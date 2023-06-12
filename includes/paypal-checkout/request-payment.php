@@ -180,12 +180,21 @@ $billing_address->setPostalCode($shop_order->billing->postcode);
 $billing_address->setState($shop_order->billing->state);
 
 $shipping_address = new PayPal\Api\Address();
-$shipping_address->setLine1($shop_order->shipping->address_1);
-$shipping_address->setLine2($shop_order->shipping->address_2);
-$shipping_address->setCity($shop_order->shipping->city);
-$shipping_address->setCountryCode($shop_order->shipping->country);
-$shipping_address->setPostalCode($shop_order->shipping->postcode);
-$shipping_address->setState($shop_order->shipping->state);
+if(!empty($shop_order->shipping->address_1)){
+    $shipping_address->setLine1($shop_order->shipping->address_1);
+    $shipping_address->setLine2($shop_order->shipping->address_2);
+    $shipping_address->setCity($shop_order->shipping->city);
+    $shipping_address->setCountryCode($shop_order->shipping->country);
+    $shipping_address->setPostalCode($shop_order->shipping->postcode);
+    $shipping_address->setState($shop_order->shipping->state);
+}else{
+    $shipping_address->setLine1($shop_order->billing->address_1);
+    $shipping_address->setLine2($shop_order->billing->address_2);
+    $shipping_address->setCity($shop_order->billing->city);
+    $shipping_address->setCountryCode($shop_order->billing->country);
+    $shipping_address->setPostalCode($shop_order->billing->postcode);
+    $shipping_address->setState($shop_order->billing->state);
+}
 
 if($payment_method == "credit_card"){
     $payer_info = new PayerInfo();
